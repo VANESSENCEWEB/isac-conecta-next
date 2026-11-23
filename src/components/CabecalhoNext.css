@@ -1,0 +1,21 @@
+/* Ajustes do cabeçalho para o projeto Next.
+   O Cabecalho.css veio igual ao PI. Lá, no celular, a grade tinha a busca e o ☰,
+   que ainda não existem aqui. Esta regra deixa só logo e selo, lado a lado. */
+@media (max-width: 899px) {
+  .cabecalho {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "logo perto";
+  }
+}
+
+/* O "+ Anunciar" virou link (no PI era botão): tira o sublinhado. */
+.cabecalho__anunciar {
+  text-decoration: none;
+}
+
+/* Computador: os links ficam no meio e empurram Entrar e Anunciar para a direita. */
+@media (min-width: 900px) {
+  .cabecalho__links {
+    flex: 1;
+  }
+}

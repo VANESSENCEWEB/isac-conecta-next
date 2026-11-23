@@ -1,6 +1,9 @@
 import { Bricolage_Grotesque, DM_Sans } from 'next/font/google'
 import '@/styles/global.css'
 import Provedores from './provedores'
+import Cabecalho from '@/components/Cabecalho'
+import NavegacaoInferior from '@/components/NavegacaoInferior'
+import Rodape from '@/components/Rodape'
 
 // As duas fontes do PI. O next/font baixa os arquivos no build e serve do próprio site,
 // então o navegador não precisa ir ao Google. Cada uma vira uma variável CSS,
@@ -34,7 +37,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${fonteTitulo.variable} ${fonteTexto.variable}`}>
       <body>
-        <Provedores>{children}</Provedores>
+        <Provedores>
+          {/* Casca de todas as páginas (no PI era o CascaPagina.jsx):
+              topo preso em cima, o miolo da página e o rodapé.
+              Como fica no layout, trocar de página não redesenha o cabeçalho. */}
+          <div className="tela">
+            <div className="topo-pagina">
+              <Cabecalho />
+              <NavegacaoInferior />
+            </div>
+            {children}
+            <Rodape />
+          </div>
+        </Provedores>
       </body>
     </html>
   )

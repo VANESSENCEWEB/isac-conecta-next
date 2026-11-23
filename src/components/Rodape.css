@@ -1,0 +1,201 @@
+/* =============================================================================
+   RODAPÉ (todas as páginas)
+   Faixa verde de ponta a ponta, no fim da página. No celular ele também passa por
+   baixo da barra fixa (o espaço de 120 px da .tela fica DENTRO do rodapé, em verde),
+   então a página não termina com uma faixa creme vazia.
+   ============================================================================= */
+
+.rodape {
+  /* Fica direto dentro da .tela (que não tem margem lateral) e cobre o espaço de baixo dela (120 px). */
+  margin: 72px 0 -120px;
+  padding: 40px var(--lado, 20px) calc(120px + 8px);
+  background: var(--cor-acao-principal);
+  color: color-mix(in oklch, var(--cor-texto-inverso) 82%, transparent);
+}
+
+.rodape__miolo {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.rodape p,
+.rodape ul {
+  margin: 0;
+}
+
+.rodape__marca {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rodape__nome {
+  color: var(--cor-texto-inverso);
+  font-family: var(--fonte-titulo);
+  font-size: 1.625rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.rodape__nome span {
+  color: var(--cor-destaque-selo);
+}
+
+.rodape__frase {
+  max-width: 34ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.rodape__redes {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0 0;
+  list-style: none;
+}
+
+.rodape__redes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  border-radius: var(--raio-pilula);
+  background: color-mix(in oklch, var(--cor-texto-inverso) 12%, transparent);
+  color: var(--cor-texto-inverso);
+}
+
+.rodape__redes svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Colunas: duas por linha no celular (Explorar | Ajuda, depois Legal). */
+.rodape__colunas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+
+.rodape__coluna .rodape__titulo {
+  margin-bottom: 6px;
+  color: var(--cor-destaque-selo);
+  font-family: var(--fonte-texto);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rodape__coluna ul {
+  padding: 0;
+  list-style: none;
+}
+
+.rodape__coluna a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  color: var(--cor-texto-inverso);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rodape__coluna a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.rodape a:focus-visible {
+  outline: 3px solid var(--cor-destaque-selo);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.rodape__base {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in oklch, var(--cor-texto-inverso) 18%, transparent);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.rodape__base strong {
+  color: var(--cor-texto-inverso);
+}
+
+/* Computador: a barra de baixo some, então o espaço de baixo da .tela é só 40 px.
+   A marca fica à esquerda e as três colunas lado a lado. */
+@media (min-width: 900px) {
+  .rodape {
+    margin: 96px 0 -40px;
+    padding: 56px var(--lado, 32px) 40px;
+    border-radius: 32px 32px 0 0;
+  }
+
+  .rodape__miolo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 40px 64px;
+  }
+
+  .rodape__colunas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Quem entrou tem a coluna do perfil: quatro colunas, e a marca fica mais estreita. */
+  .rodape__miolo:has(.rodape__colunas--quatro) {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr);
+  }
+
+  .rodape__colunas--quatro {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .rodape__base {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Botão "Sair da conta" para quem está logado: claro, sem precisar procurar no menu. */
+.rodape__sair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.rodape__botao-sair {
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font-family: var(--fonte-texto);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rodape__botao-sair:hover {
+  background: rgb(255 255 255 / 12%);
+}
+
+.rodape__botao-sair:focus-visible {
+  outline: 3px solid var(--cor-destaque-selo);
+  outline-offset: 2px;
+}
+
+.rodape__sair p {
+  margin: 0;
+  font-size: 0.875rem;
+}

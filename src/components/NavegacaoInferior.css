@@ -1,0 +1,145 @@
+/* =============================================================================
+   BARRA DE BAIXO (celular)
+   O mesmo desenho para todos os perfis: 5 colunas, cada item com ícone e nome,
+   e o botão do meio (terracota) sempre no centro, um pouco acima da barra.
+   O item da tela aberta fica verde, com um tracinho em cima (não depende só da cor).
+   Só cores dos tokens. Toques com pelo menos 44 px.
+   ============================================================================= */
+
+.nav-inferior {
+  position: fixed;
+  z-index: 5;
+  bottom: 12px;
+  left: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) 72px repeat(2, minmax(0, 1fr));
+  align-items: end;
+  width: min(430px, calc(100% - 16px));
+  height: 68px;
+  padding: 0 6px 8px;
+  border: 1px solid var(--cor-borda-padrao);
+  border-radius: 26px;
+  background: var(--cor-fundo-superficie);
+  box-shadow: var(--sombra-nav);
+  transform: translateX(-50%);
+}
+
+/* Cada item: ícone em cima, nome embaixo. */
+.nav-inferior__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 0;
+  min-height: 52px;
+  padding: 6px 2px 0;
+  border-radius: 16px;
+  color: var(--cor-texto-secundario);
+  font-family: var(--fonte-texto);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.nav-inferior__item svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.nav-inferior__nome {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-inferior__item:hover {
+  color: var(--cor-acao-principal);
+}
+
+/* Item da tela aberta: verde, mais forte, com o tracinho em cima. */
+.nav-inferior__item--ativo {
+  color: var(--cor-acao-principal);
+  font-weight: 800;
+}
+
+.nav-inferior__item--ativo::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 22px;
+  height: 3px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-acao-principal);
+  transform: translateX(-50%);
+}
+
+/* O botão do meio: o círculo terracota sobe um pouco e o nome fica embaixo. */
+.nav-inferior__publicar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  color: var(--cor-acao-publicar);
+  font-family: var(--fonte-texto);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 14px;
+  text-decoration: none;
+}
+
+.nav-inferior__circulo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin-top: -22px;
+  border: 4px solid var(--cor-fundo-superficie);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-acao-publicar);
+  color: var(--cor-texto-sobre-publicar);
+  box-shadow: 0 8px 18px -4px rgb(180 83 47 / 35%);
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.nav-inferior__circulo svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-inferior__publicar:hover .nav-inferior__circulo {
+  background: var(--cor-acao-publicar-pressionado);
+  transform: translateY(-2px);
+}
+
+.nav-inferior__item:focus-visible,
+.nav-inferior__publicar:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-inferior__item,
+  .nav-inferior__circulo {
+    transition: none;
+  }
+
+  .nav-inferior__publicar:hover .nav-inferior__circulo {
+    transform: none;
+  }
+}
+
+/* No desktop a barra some. Os links passam para o cabeçalho. */
+@media (min-width: 900px) {
+  .nav-inferior {
+    display: none;
+  }
+}

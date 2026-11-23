@@ -16,7 +16,7 @@ const rotas = [
 
 export default function Home() {
   return (
-    <main className="tela em-construcao">
+    <main className="em-construcao">
       <h1>ISAC Conecta</h1>
       <p>A vitrine do bairro entra aqui no Dia 4. Por enquanto, as telas do site:</p>
       <ul>

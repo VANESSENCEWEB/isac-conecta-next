@@ -1,0 +1,687 @@
+.cabecalho {
+  display: grid;
+  /* CELULAR (todas as telas, igual à página inicial):
+     logo, selo "Perto de você" e menu na primeira linha; a busca animada na segunda.
+     O "+ Anunciar" e os links ficam na barra de baixo. */
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    "logo perto menu"
+    "busca busca busca";
+  align-items: center;
+  gap: 8px var(--espaco-2);
+  padding: var(--espaco-3) var(--lado, var(--espaco-5));
+  background: var(--cor-fundo-pagina);
+}
+
+.cabecalho__busca-inicio {
+  grid-area: busca;
+  min-width: 0;
+}
+
+/* No celular a busca em pílula do computador e o "+ Anunciar" do topo não aparecem. */
+@media (max-width: 899px) {
+  .cabecalho .cabecalho__busca,
+  .cabecalho .cabecalho__anunciar {
+    display: none;
+  }
+}
+
+.cabecalho__logo {
+  display: flex;
+  grid-area: logo;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  height: 44px;
+  justify-self: start;
+}
+
+.cabecalho__logo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 44px;
+  object-fit: contain;
+  object-position: left center;
+  /* O arquivo do logo tem fundo branco: "multiply" deixa o branco da cor da página,
+     então o logo não aparece dentro de um quadrado branco sobre o creme. */
+  mix-blend-mode: multiply;
+  /* O desenho só começa no pixel 77 dos 430 do arquivo (151 de altura): 22,4 px vazios
+     na altura de 44 px. A margem negativa encosta o desenho na margem da página,
+     alinhado com a busca, o card e os botões. */
+  margin-left: calc(44px * -77 / 151);
+}
+
+/* No computador o logo fica dentro da pílula branca e já tem o respiro certo. */
+@media (min-width: 900px) {
+  .cabecalho__logo img {
+    margin-left: 0;
+  }
+}
+
+.cabecalho__anunciar {
+  display: inline-flex;
+  grid-area: anunciar;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px 14px 10px 10px;
+  border: 0;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-acao-publicar);
+  color: var(--cor-texto-sobre-publicar);
+  font-family: var(--fonte-texto);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  box-shadow: 0 4px 12px -2px rgb(180 83 47 / 25%);
+  cursor: pointer;
+}
+
+.cabecalho__mais {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+}
+
+.cabecalho__mais svg,
+.cabecalho__menu svg,
+.cabecalho__icone-busca svg,
+.cabecalho__filtros svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cabecalho__menu {
+  display: inline-flex;
+  grid-area: menu;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-principal);
+  box-shadow: 0 4px 12px -2px rgb(15 77 58 / 10%);
+  cursor: pointer;
+}
+
+.cabecalho__menu svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cabecalho__busca {
+  display: flex;
+  grid-area: busca;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 6px 0 18px;
+  border: 1px solid var(--cor-borda-padrao);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  box-shadow: 0 6px 18px -4px rgb(15 77 58 / 10%);
+}
+
+.cabecalho__campo {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cabecalho__rotulo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.cabecalho__icone-busca {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  color: var(--cor-texto-secundario);
+}
+
+.cabecalho__campo input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto-principal);
+  font: inherit;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.cabecalho__campo input:focus {
+  outline: none;
+}
+
+.cabecalho__busca:focus-within {
+  outline: 2px solid var(--cor-acao-principal);
+  outline-offset: 2px;
+}
+
+.cabecalho__campo input::placeholder {
+  color: var(--cor-texto-secundario);
+}
+
+.cabecalho__filtros {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-acao-principal);
+  color: var(--cor-texto-inverso);
+  cursor: pointer;
+}
+
+.cabecalho__filtros svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* O nome "Filtros" só aparece no computador; no celular fica só o ícone. */
+.cabecalho__filtros-nome {
+  display: none;
+}
+
+/* Entrar (só para quem não entrou) aparece no computador; no celular ele está na barra de baixo. */
+.cabecalho__entrar {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 16px 0 12px;
+  border: 1.5px solid var(--cor-acao-principal);
+  border-radius: var(--raio-pilula);
+  color: var(--cor-acao-principal);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.cabecalho__entrar:hover {
+  background: var(--cor-acao-principal);
+  color: var(--cor-texto-inverso);
+}
+
+.cabecalho__entrar-icone {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+}
+
+.cabecalho__entrar-icone svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cabecalho__anunciar:focus-visible,
+.cabecalho__menu:focus-visible,
+.cabecalho__filtros:focus-visible,
+.cabecalho__link:focus-visible,
+.cabecalho__entrar:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 3px;
+}
+
+/* Os links do perfil só aparecem no desktop. No celular eles estão na barra. */
+.cabecalho__links {
+  display: none;
+}
+
+.cabecalho__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: var(--raio-pilula);
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cabecalho__link:hover {
+  color: var(--cor-acao-principal);
+}
+
+/* Link da tela aberta: verde, com fundo verde bem claro. */
+.cabecalho__link--ativo {
+  background: color-mix(in oklch, var(--cor-acao-principal) 10%, transparent);
+  color: var(--cor-acao-principal);
+  font-weight: 800;
+}
+
+/* Tablet (768 a 899 px): continua o cabeçalho do celular, só com mais espaço nas laterais. */
+.cabecalho__anunciar {
+  white-space: nowrap;
+}
+
+/* Computador: o cabeçalho vira uma pílula branca que flutua sobre a página,
+   com tudo numa linha só. A barra de baixo some. */
+@media (min-width: 900px) {
+  /* Em volta da pílula, a cor da página vai sumindo: a pílula parece flutuar
+     e os cards que passam por trás não ficam cortados de repente. */
+  .topo-pagina {
+    padding: 12px var(--lado, 32px) 8px;
+    background: linear-gradient(var(--cor-fundo-pagina) 60%, transparent);
+    box-shadow: none;
+  }
+
+  .cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 68px;
+    /* A imagem do logo já tem um respiro à esquerda, por isso o lado esquerdo é menor. */
+    padding: 8px 8px 8px 10px;
+    border: 1px solid var(--cor-borda-padrao);
+    border-radius: var(--raio-pilula);
+    background: var(--cor-fundo-superficie);
+    box-shadow: 0 12px 32px -12px rgb(15 77 58 / 22%);
+  }
+
+  .cabecalho__logo {
+    flex-shrink: 0;
+    height: 40px;
+    margin-right: 8px;
+  }
+
+  .cabecalho__logo img {
+    height: 40px;
+  }
+
+  /* A busca, dentro da pílula, fica com fundo da página e sem sombra. */
+  .cabecalho__busca {
+    flex: 1 1 auto;
+    min-width: 180px;
+    height: 48px;
+    background: var(--cor-fundo-pagina);
+    box-shadow: none;
+  }
+
+  .cabecalho__filtros {
+    gap: 6px;
+    width: auto;
+    padding: 0 14px 0 12px;
+    font-family: var(--fonte-texto);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .cabecalho__filtros-nome {
+    display: inline;
+  }
+
+  .cabecalho__links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Na página inicial os links ficam no meio da pílula. */
+  .cabecalho--inicio .cabecalho__links {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .cabecalho__entrar {
+    display: inline-flex;
+  }
+
+  .cabecalho__anunciar {
+    min-height: 48px;
+    padding: 0 18px 0 14px;
+  }
+
+  .cabecalho__menu {
+    flex-shrink: 0;
+    box-shadow: none;
+    background: var(--cor-fundo-pagina);
+  }
+
+}
+
+/* Página inicial (como no mockup): "+ Anunciar" verde, "Entrar" só texto,
+   links logo depois do logo e o menu sem fundo. */
+.cabecalho--inicio .cabecalho__anunciar {
+  background: var(--cor-acao-principal);
+  color: var(--cor-texto-inverso);
+  box-shadow: 0 6px 14px -6px rgb(15 77 58 / 45%);
+}
+
+.cabecalho--inicio .cabecalho__anunciar:hover {
+  background: var(--cor-acao-principal-pressionado);
+}
+
+@media (min-width: 900px) {
+  .cabecalho--inicio {
+    gap: 4px;
+    padding-right: 10px;
+  }
+
+  /* No computador a busca animada sai (a busca em pílula ocupa o meio).
+     O selo "Perto de você" fica, logo depois do logo (regras no fim deste arquivo). */
+  .cabecalho .cabecalho__busca-inicio {
+    display: none;
+  }
+
+  .cabecalho--inicio .cabecalho__links {
+    flex: 1;
+    justify-content: flex-start;
+    gap: 4px;
+    margin-left: 16px;
+  }
+
+  .cabecalho--inicio .cabecalho__link {
+    color: var(--cor-texto-secundario);
+    font-size: 0.9375rem;
+  }
+
+  .cabecalho--inicio .cabecalho__link:hover {
+    color: var(--cor-acao-principal);
+  }
+
+  .cabecalho--inicio .cabecalho__entrar {
+    padding: 0 14px;
+    border: 0;
+    font-size: 0.9375rem;
+  }
+
+  .cabecalho--inicio .cabecalho__entrar:hover {
+    background: transparent;
+    color: var(--cor-acao-principal-pressionado);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .cabecalho--inicio .cabecalho__entrar-icone {
+    display: none;
+  }
+
+  .cabecalho--inicio .cabecalho__menu {
+    background: transparent;
+  }
+}
+
+/* Telas médias de computador: guarda espaço para a busca. */
+@media (min-width: 900px) and (max-width: 1099px) {
+  .cabecalho--app .cabecalho__entrar-icone {
+    display: none;
+  }
+
+  .cabecalho__link {
+    padding: 0 10px;
+  }
+}
+
+/* --- Selo "Perto de você · até 10 km" (todas as telas) --------------------- */
+.cabecalho__perto {
+  display: inline-flex;
+  grid-area: perto;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 4px 12px 4px 8px;
+  border: 1px solid color-mix(in oklch, var(--cor-pino) 45%, transparent);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-principal);
+  box-shadow: 0 4px 12px -4px rgb(15 77 58 / 16%);
+  text-decoration: none;
+  transition: box-shadow var(--transicao-botao), transform var(--transicao-botao);
+}
+
+.cabecalho__perto:hover {
+  box-shadow: 0 8px 18px -6px rgb(15 77 58 / 24%);
+  transform: translateY(-1px);
+}
+
+.cabecalho__perto:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 3px;
+}
+
+/* O pin pula de tempos em tempos; a sombra no chão encolhe quando ele sobe. */
+.cabecalho__pino {
+  position: relative;
+  display: inline-flex;
+  width: 18px;
+  height: 34px;
+  padding-bottom: 4px;
+}
+
+.cabecalho__pino img {
+  display: block;
+  width: 18px;
+  height: 30px;
+  animation: cabecalho-pino-pula 2.4s ease-in-out infinite;
+}
+
+.cabecalho__pino::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 12px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 25%);
+  transform: translateX(-50%);
+  animation: cabecalho-pino-sombra 2.4s ease-in-out infinite;
+}
+
+.cabecalho__perto-texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.cabecalho__perto-texto strong {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.cabecalho__perto-texto span {
+  color: var(--cor-acao-principal);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@keyframes cabecalho-pino-pula {
+  0%, 55%, 100% { transform: translateY(0); }
+  65% { transform: translateY(-7px); }
+  75% { transform: translateY(0); }
+  82% { transform: translateY(-2px); }
+  88% { transform: translateY(0); }
+}
+
+@keyframes cabecalho-pino-sombra {
+  0%, 55%, 100% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+  65% { opacity: 0.45; transform: translateX(-50%) scaleX(0.55); }
+  75% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cabecalho__entrar,
+  .cabecalho__perto {
+    transition: none;
+  }
+
+  .cabecalho__pino img,
+  .cabecalho__pino::after {
+    animation: none;
+  }
+}
+
+/* Selo no computador: dentro da pílula branca, sem sombra própria, com o fundo da página. */
+@media (min-width: 900px) {
+  .cabecalho__perto {
+    flex-shrink: 0;
+    margin-right: 4px;
+    background: var(--cor-fundo-pagina);
+    box-shadow: none;
+  }
+}
+
+/* Telas médias de computador: só o pin, para sobrar espaço para a busca e os links. */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .cabecalho__perto {
+    padding: 4px 10px;
+  }
+
+  .cabecalho__perto-texto {
+    display: none;
+  }
+}
+
+/* Botão de ação da equipe ("Importar grupo"): verde da marca, não terracota. */
+.cabecalho--equipe .cabecalho__anunciar {
+  background: var(--cor-acao-principal);
+}
+
+.cabecalho--equipe .cabecalho__anunciar:hover {
+  background: var(--cor-acao-principal-pressionado);
+}
+
+/* Telas médias de computador, para quem entrou: os links do perfil saem do cabeçalho
+   (eles estão no menu da conta e no ☰) e a busca fica com espaço para digitar. */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .cabecalho--app.cabecalho--logado .cabecalho__links {
+    display: none;
+  }
+}
+
+/* Computador: o ☰ (menu do celular) não aparece. As páginas ficam nos links do topo,
+   no menu da conta e no rodapé; a acessibilidade ganha um botão próprio. */
+@media (min-width: 900px) {
+  .cabecalho .cabecalho__menu {
+    display: none;
+  }
+}
+
+/* --- Dica animada da busca do computador ("Buscar produtos / imóveis…") ----------
+   Mesma dica da página inicial (DicaDaBusca, em BuscaAnimada.jsx). Fica por cima do
+   campo vazio e não atrapalha o clique (pointer-events: none). */
+.cabecalho__dica {
+  position: absolute;
+  left: 30px;
+  right: 0;
+  overflow: hidden;
+  color: var(--cor-texto-secundario);
+  font-size: 15px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.cabecalho__dica strong {
+  color: var(--cor-texto-principal);
+  font-weight: 700;
+}
+
+/* =============================================================================
+   PADRÃO DOS BOTÕES DO TOPO NO COMPUTADOR (10/nov)
+   Repetição e alinhamento: todos os controles da pílula têm a MESMA altura
+   (44 px, o alvo de toque mínimo), o mesmo arredondamento (pílula), o mesmo
+   texto (14 px, negrito) e o mesmo espaço interno. A largura muda só por causa
+   da palavra. A hierarquia fica na cor, não no tamanho:
+     • ação principal (Anunciar / Importar grupo): cheio, terracota ou verde;
+     • Entrar e a conta: contorno;
+     • links (Vitrine...) e Acessibilidade: sem contorno, só fundo leve no ativo.
+   ============================================================================= */
+@media (min-width: 900px) {
+  .cabecalho {
+    --topo-altura: 44px;
+    --topo-fonte: 14px;
+    gap: 6px;
+  }
+
+  /* Selo "Perto de você", links, Entrar e Anunciar: mesma altura e mesma fonte. */
+  .cabecalho__perto,
+  .cabecalho__link,
+  .cabecalho__entrar,
+  .cabecalho__anunciar,
+  .cabecalho .menu-conta__botao {
+    box-sizing: border-box;
+    height: var(--topo-altura);
+    min-height: var(--topo-altura);
+    font-size: var(--topo-fonte);
+    line-height: 20px;
+  }
+
+  /* Botões com texto: 16 px de cada lado; quando têm ícone, o lado do ícone fica com 12 px. */
+  .cabecalho__link {
+    padding: 0 16px;
+    font-weight: 700;
+  }
+
+  .cabecalho__entrar,
+  .cabecalho__anunciar {
+    gap: 6px;
+    padding: 0 16px 0 12px;
+    font-weight: 700;
+  }
+
+  /* Borda de 1.5 px também no botão cheio (da cor dele): assim os dois têm o mesmo tamanho. */
+  .cabecalho__entrar {
+    border-width: 1.5px;
+  }
+
+  .cabecalho__anunciar {
+    border: 1.5px solid transparent;
+    box-shadow: none;
+  }
+
+  .cabecalho__mais,
+  .cabecalho__entrar-icone {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Busca: a pílula com a mesma altura dos botões; o Filtros cabe dentro dela. */
+  .cabecalho__busca {
+    box-sizing: border-box;
+    height: var(--topo-altura);
+    padding: 0 4px 0 16px;
+  }
+
+  .cabecalho__filtros {
+    height: 36px;
+  }
+
+  /* Acessibilidade: círculo do mesmo tamanho dos outros botões. */
+  .cabecalho .menu-acess__botao {
+    width: var(--topo-altura);
+    height: var(--topo-altura);
+  }
+
+  .cabecalho .menu-acess__botao svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Botão da conta (quem entrou): contorno, igual ao Entrar. */
+  .cabecalho .menu-conta__botao {
+    padding: 0 14px 0 4px;
+    border-width: 1.5px;
+  }
+}

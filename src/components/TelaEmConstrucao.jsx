@@ -6,7 +6,7 @@ import './TelaEmConstrucao.css'
 // Devolve a página com um link de volta para o início, feito com next/link.
 export default function TelaEmConstrucao({ titulo, dia, children }) {
   return (
-    <main className="tela em-construcao">
+    <main className="em-construcao">
       <h1>{titulo}</h1>
       <p>Esta tela fica pronta no {dia}.</p>
       {children}
