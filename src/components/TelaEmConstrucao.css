@@ -1,0 +1,18 @@
+/* Tela provisória: some quando cada tela de verdade ficar pronta. */
+.em-construcao {
+  padding: var(--espaco-5) var(--lado);
+}
+
+.em-construcao h1 {
+  font-family: var(--fonte-titulo);
+  margin: 0 0 var(--espaco-2);
+}
+
+.em-construcao p {
+  margin: 0 0 var(--espaco-5);
+}
+
+.em-construcao a {
+  color: inherit;
+  font-weight: 600;
+}
