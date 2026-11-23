@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FaixaCategorias from '@/components/FaixaCategorias'
 import '@/components/TelaEmConstrucao.css'
 
 // Todas as rotas do site. Cada pasta em src/app vira um endereço.
@@ -18,6 +19,8 @@ export default function Home() {
   return (
     <main className="em-construcao">
       <h1>ISAC Conecta</h1>
+      {/* Categorias vindas do Supabase (TanStack Query), com o filtro no Zustand. */}
+      <FaixaCategorias />
       <p>A vitrine do bairro entra aqui no Dia 4. Por enquanto, as telas do site:</p>
       <ul>
         {rotas.map((rota) => (

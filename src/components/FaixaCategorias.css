@@ -1,0 +1,14 @@
+/* Faixa de categorias: rola de lado no celular, sem barra de rolagem aparente. */
+.faixa-categorias {
+  display: flex;
+  gap: var(--espaco-2);
+  overflow-x: auto;
+  padding: var(--espaco-2) 0;
+  scrollbar-width: none;
+}
+
+.faixa-categorias__aviso,
+.faixa-categorias__escolhida {
+  margin: var(--espaco-2) 0;
+  color: var(--cor-texto-secundario);
+}
