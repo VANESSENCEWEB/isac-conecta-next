@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense, useState } from 'react'
+import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Alerta from '@/components/Alerta.jsx'
 import Botao from '@/components/Botao.jsx'
@@ -9,7 +10,7 @@ import { IconeEscudo } from '@/components/Icones.jsx'
 import MapaDoBairro from '@/components/entrar/MapaDoBairro.jsx'
 import { entrar } from '@/services/auth'
 import { digitosDoTelefone, erroDoTelefone, mascararTelefone } from '@/utils/validarCadastro'
-import { destinoSeguro } from '@/utils/destinoSeguro'
+import { destinoSeguro, linkComVolta } from '@/utils/destinoSeguro'
 import { textosDoEntrar } from '@/utils/textosEntrar'
 import '@/components/Conta.css'
 
@@ -19,7 +20,7 @@ import '@/components/Conta.css'
 //   • 'use client' na primeira linha (a tela tem useState e onSubmit);
 //   • useNavigate → useRouter, e navigate(x) → router.push(x);
 //   • useSearchParams agora vem de next/navigation;
-//   • <Link to> → <Link href>;
+
 //   • sem o CascaPagina: o cabeçalho e o rodapé já vêm do layout.js.
 // Depois do login, quem guarda a conta no Zustand é o OuvirSessao (o Supabase avisa).
 // =============================================================================
@@ -134,6 +135,11 @@ function TelaEntrar({ voltar }) {
             autoComplete="current-password"
             erro={erroSenha}
           />
+
+          <div className="conta__linha">
+            <span>Problemas para entrar?</span>
+            <Link href={linkComVolta('/recuperar-senha', voltar)}>Esqueci minha senha</Link>
+          </div>
 
           <Botao tipo="primario" icone className="botao--largo" type="submit" desabilitado={!podeEntrar || enviando}>
             {enviando ? 'Entrando…' : 'Entrar'}
