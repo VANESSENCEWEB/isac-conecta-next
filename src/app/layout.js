@@ -4,6 +4,7 @@ import Provedores from './provedores'
 import Cabecalho from '@/components/Cabecalho'
 import NavegacaoInferior from '@/components/NavegacaoInferior'
 import Rodape from '@/components/Rodape'
+import OuvirSessao from '@/components/OuvirSessao'
 
 // As duas fontes do PI. O next/font baixa os arquivos no build e serve do próprio site,
 // então o navegador não precisa ir ao Google. Cada uma vira uma variável CSS,
@@ -38,6 +39,8 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR" className={`${fonteTitulo.variable} ${fonteTexto.variable}`}>
       <body>
         <Provedores>
+          {/* Escuta o login do Supabase e guarda quem entrou no Zustand. */}
+          <OuvirSessao />
           {/* Casca de todas as páginas (no PI era o CascaPagina.jsx):
               topo preso em cima, o miolo da página e o rodapé.
               Como fica no layout, trocar de página não redesenha o cabeçalho. */}
