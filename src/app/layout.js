@@ -1,5 +1,6 @@
 import { Bricolage_Grotesque, DM_Sans } from 'next/font/google'
 import '@/styles/global.css'
+import Provedores from './provedores'
 
 // As duas fontes do PI. O next/font baixa os arquivos no build e serve do próprio site,
 // então o navegador não precisa ir ao Google. Cada uma vira uma variável CSS,
@@ -32,7 +33,9 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${fonteTitulo.variable} ${fonteTexto.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Provedores>{children}</Provedores>
+      </body>
     </html>
   )
 }
