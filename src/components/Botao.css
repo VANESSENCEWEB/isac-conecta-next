@@ -1,0 +1,218 @@
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 342px;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-botao-verde);
+  color: var(--cor-texto-inverso);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: var(--sombra-botao);
+  cursor: pointer;
+  transition:
+    background-color var(--transicao-botao),
+    box-shadow var(--transicao-botao),
+    transform var(--transicao-botao);
+}
+
+.botao:focus-visible {
+  outline: 3px solid var(--cor-botao-verde);
+  outline-offset: 3px;
+}
+
+.botao__icone {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.botao--primario {
+  background: var(--cor-botao-verde);
+  color: var(--cor-texto-inverso);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--primario:hover:not(:disabled) {
+    background: var(--cor-botao-verde-hover);
+    box-shadow: var(--sombra-botao-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.botao--primario.botao--pressionado,
+.botao--primario:active:not(:disabled) {
+  background: var(--cor-botao-verde-active);
+  transform: scale(0.98);
+}
+
+.botao--destaque {
+  background: var(--cor-botao-laranja);
+  color: var(--cor-texto-inverso);
+}
+
+/* Ações que abrem o WhatsApp (10/nov): verde do WhatsApp escuro, com o ícone de conversa.
+   Ajuda a pessoa a reconhecer na hora que o botão leva para o WhatsApp. */
+.botao--whatsapp {
+  background: var(--cor-whatsapp-escuro);
+  color: var(--cor-texto-inverso);
+  text-decoration: none;
+}
+
+.botao--whatsapp svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--whatsapp:hover:not(:disabled) {
+    filter: brightness(0.92);
+    box-shadow: var(--sombra-botao-hover);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--destaque:hover:not(:disabled) {
+    background: var(--cor-botao-laranja-hover);
+    box-shadow: var(--sombra-botao-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.botao--destaque.botao--pressionado,
+.botao--destaque:active:not(:disabled) {
+  background: var(--cor-botao-laranja-active);
+  transform: scale(0.98);
+}
+
+.botao--secundario {
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-botao-verde);
+  border: 2px solid var(--cor-botao-verde);
+  box-shadow: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--secundario:hover:not(:disabled) {
+    background: color-mix(in oklch, var(--cor-botao-verde) 12%, white);
+  }
+}
+
+.botao--secundario.botao--pressionado,
+.botao--secundario:active:not(:disabled) {
+  background: color-mix(in oklch, var(--cor-botao-verde) 18%, white);
+  transform: scale(0.98);
+}
+
+/* Cancelar: branco, contorno cinza e texto escuro. Neutro, para não competir com a ação. */
+.botao--cancelar {
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-principal);
+  border: 2px solid var(--cor-desabilitado-borda);
+  box-shadow: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--cancelar:hover:not(:disabled) {
+    background: var(--cor-fundo-pagina);
+  }
+}
+
+.botao--cancelar.botao--pressionado,
+.botao--cancelar:active:not(:disabled) {
+  background: var(--cor-borda-padrao);
+  transform: scale(0.98);
+}
+
+.botao--link {
+  width: auto;
+  min-height: 44px;
+  padding: 0 var(--espaco-2);
+  background: transparent;
+  color: var(--cor-texto-link);
+  box-shadow: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--link:hover:not(:disabled) {
+    text-decoration: underline;
+  }
+}
+
+.botao--link.botao--pressionado,
+.botao--link:active:not(:disabled) {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+.botao--perigo {
+  background: var(--cor-status-recusado-texto);
+  color: var(--cor-texto-inverso);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--perigo:hover:not(:disabled) {
+    background: color-mix(in oklch, var(--cor-status-recusado-texto) 88%, black);
+    box-shadow: var(--sombra-botao-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.botao--perigo.botao--pressionado,
+.botao--perigo:active:not(:disabled) {
+  background: color-mix(in oklch, var(--cor-status-recusado-texto) 75%, black);
+  transform: scale(0.98);
+}
+
+.botao--perigo-contorno {
+  background: transparent;
+  color: var(--cor-status-recusado-texto);
+  border: 2px solid var(--cor-status-recusado-texto);
+  box-shadow: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .botao--perigo-contorno:hover:not(:disabled) {
+    background: var(--cor-status-recusado-fundo);
+  }
+}
+
+.botao--perigo-contorno.botao--pressionado,
+.botao--perigo-contorno:active:not(:disabled) {
+  background: var(--cor-status-recusado-fundo);
+  transform: scale(0.98);
+}
+
+.botao--link:disabled,
+.botao--perigo:disabled,
+.botao--perigo-contorno:disabled {
+  background: var(--cor-desabilitado-fundo);
+  color: var(--cor-desabilitado-texto);
+  border-color: var(--cor-desabilitado-borda);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 1;
+  transform: none;
+}
+
+.botao--largo {
+  max-width: none;
+}
+
+.botao--primario:disabled,
+.botao--destaque:disabled,
+.botao--secundario:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+}

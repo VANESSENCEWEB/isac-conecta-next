@@ -1,0 +1,230 @@
+/* =============================================================================
+   MAPA DO BAIRRO (animação da tela Entrar)
+   Quadro verde-escuro com brilho dourado, a mensagem do grupo no meio
+   (que vira um anúncio organizado) e as 6 categorias em volta.
+   Só cores dos tokens.
+   ============================================================================= */
+
+.mapa-bairro {
+  position: relative;
+  overflow: hidden;
+  min-height: 640px;
+  height: 100%;
+  border-radius: 32px;
+  /* Verde profundo: brilho dourado no alto, mais escuro embaixo, e uma textura bem leve. */
+  background:
+    radial-gradient(ellipse 60% 45% at 45% 22%, color-mix(in oklch, var(--cor-destaque-selo) 32%, transparent), transparent 70%),
+    radial-gradient(rgb(255 255 255 / 4%) 1px, transparent 1.5px) 0 0 / 16px 16px,
+    linear-gradient(170deg, var(--cor-acao-principal) 0%, var(--cor-acao-principal-pressionado) 100%);
+  color: var(--cor-texto-principal);
+  box-shadow: var(--sombra-destaque);
+}
+
+/* ---------- Linhas tracejadas ---------- */
+
+.mapa-bairro__linhas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapa-bairro__linha {
+  stroke: var(--cor-destaque-selo);
+  stroke-opacity: 0.45;
+  stroke-width: 1.4;
+  stroke-dasharray: 2 6;
+  stroke-linecap: round;
+  /* A espessura não estica junto com o quadro. */
+  vector-effect: non-scaling-stroke;
+  /* Os pontinhos "andam" do meio para fora, como se a mensagem fosse distribuída. */
+  animation: mapa-linha-anda 1.6s linear infinite;
+  transition: stroke-opacity 400ms ease, stroke-width 400ms ease;
+}
+
+/* A linha até a categoria do anúncio acende quando ele fica pronto. */
+.mapa-bairro__linha--ativa {
+  stroke-opacity: 1;
+  stroke-width: 2.4;
+}
+
+/* ---------- Categorias ---------- */
+
+/* A posição fica neste elemento; a flutuação fica na bolinha de dentro. */
+.mapa-bairro__categoria {
+  position: absolute;
+  z-index: 1;
+  translate: -50% -50%;
+  animation: mapa-categoria-aparece 700ms cubic-bezier(0.2, 0.8, 0.2, 1.25) var(--atraso) both;
+}
+
+.mapa-bairro__bolinha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  background: var(--cor-fundo-pagina);
+  box-shadow:
+    0 22px 40px -14px rgb(0 0 0 / 60%),
+    inset 0 -4px 0 rgb(0 0 0 / 5%);
+  color: var(--cor-acao-principal);
+  font-family: var(--fonte-titulo);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  /* Flutua devagar, cada uma no seu tempo. */
+  animation: mapa-categoria-flutua 6s ease-in-out calc(var(--atraso) * 2) infinite;
+}
+
+.mapa-bairro__bolinha img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 4px rgb(0 0 0 / 18%));
+}
+
+/* ---------- O meio (balão e cartão) ---------- */
+
+.mapa-bairro__meio {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  translate: -50% -50%;
+}
+
+/* Balão da mensagem como chega no WhatsApp. */
+.mapa-bairro__balao {
+  min-width: 230px;
+  padding: 14px 18px;
+  border-radius: 16px 16px 16px 4px;
+  background: var(--cor-balao-whatsapp);
+  box-shadow: 0 22px 44px -14px rgb(0 0 0 / 55%);
+  font-size: 16px;
+  line-height: 23px;
+  animation: mapa-balao-chega 600ms cubic-bezier(0.2, 0.8, 0.2, 1.2) both;
+}
+
+.mapa-bairro__balao p {
+  margin: 0;
+}
+
+.mapa-bairro__grupo {
+  margin-bottom: 4px !important;
+  color: var(--cor-acao-principal);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Cartão do anúncio organizado. */
+.mapa-bairro__cartao {
+  position: relative;
+  min-width: 250px;
+  padding: 18px 22px 20px;
+  border-radius: 18px;
+  background: var(--cor-fundo-superficie);
+  box-shadow: 0 26px 50px -14px rgb(0 0 0 / 60%);
+  animation: mapa-cartao-vira 650ms cubic-bezier(0.2, 0.8, 0.2, 1.15) both;
+}
+
+.mapa-bairro__cartao p {
+  margin: 0;
+}
+
+.mapa-bairro__rotulo {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 12px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-status-ativo-fundo);
+  color: var(--cor-acao-principal);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mapa-bairro__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 26px;
+}
+
+.mapa-bairro__bairro {
+  margin-top: 2px !important;
+  color: var(--cor-texto-secundario);
+  font-size: 15px;
+}
+
+.mapa-bairro__preco {
+  margin-top: 8px !important;
+  color: var(--cor-texto-link);
+  font-family: var(--fonte-titulo);
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* O ✓ amarelo no canto, que aparece com um pulinho depois do cartão. */
+.mapa-bairro__check {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--cor-fundo-superficie);
+  border-radius: 50%;
+  background: var(--cor-destaque-selo);
+  color: var(--cor-acao-principal);
+  box-shadow: 0 8px 16px -6px rgb(0 0 0 / 45%);
+  animation: mapa-check-pula 500ms cubic-bezier(0.2, 0.8, 0.2, 1.6) 380ms both;
+}
+
+/* ---------- Animações ---------- */
+
+@keyframes mapa-linha-anda {
+  to { stroke-dashoffset: -16; }
+}
+
+@keyframes mapa-categoria-aparece {
+  from { opacity: 0; scale: 0.4; }
+  to { opacity: 1; scale: 1; }
+}
+
+@keyframes mapa-categoria-flutua {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(4px, -10px); }
+  66% { transform: translate(-4px, -4px); }
+}
+
+@keyframes mapa-balao-chega {
+  from { opacity: 0; transform: translateY(14px) scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+
+/* O balão "vira" cartão: entra crescendo, com um leve giro, e sem desfoque no fim. */
+@keyframes mapa-cartao-vira {
+  from { opacity: 0; transform: scale(0.82) rotate(-3deg); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+@keyframes mapa-check-pula {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Quem pediu menos movimento vê o desenho parado. */
+@media (prefers-reduced-motion: reduce) {
+  .mapa-bairro__linha,
+  .mapa-bairro__categoria,
+  .mapa-bairro__bolinha,
+  .mapa-bairro__balao,
+  .mapa-bairro__cartao,
+  .mapa-bairro__check {
+    animation: none;
+  }
+}
