@@ -86,8 +86,8 @@
   --transicao-botao: 160ms ease;
 
   /* Fontes */
-  --fonte-titulo: "Bricolage Grotesque", sans-serif;
-  --fonte-texto: "DM Sans", sans-serif;
+  --fonte-titulo: var(--font-bricolage), "Bricolage Grotesque", sans-serif;
+  --fonte-texto: var(--font-dm-sans), "DM Sans", sans-serif;
 
   /* Espaços (base 4) e cantos */
   --espaco-1: 4px;

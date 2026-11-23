@@ -1,3 +1,10 @@
+/* Ponto de entrada do CSS: o layout.js importa só este arquivo.
+   A ordem é a mesma do main.jsx do PI: primeiro as variáveis, depois o resto. */
+@import "./tokens.css";
+@import "./base.css";
+@import "./tela.css";
+@import "./categorias.css";
+@import "./acessibilidade.css";
 
 /* Foto de perfil (componente Avatar): preenche o círculo sem esticar. */
 .avatar-foto {
