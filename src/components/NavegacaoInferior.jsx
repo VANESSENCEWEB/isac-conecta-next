@@ -3,14 +3,46 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { IconeMais } from './Icones.jsx'
+import { IconeConta, IconeMais, IconeSair } from './Icones.jsx'
 import { ITENS_DA_BARRA, itemAtivoDaRota } from './itensNavegacao.js'
+import useSairDaConta from '@/hooks/useSairDaConta'
+import { useSessaoStore } from '@/store/useSessaoStore'
 import './NavegacaoInferior.css'
+import './NavegacaoInferiorNext.css'
+
+// Item da conta na barra (lê do Zustand quem está logado).
+// Visitante, ou ainda conferindo: o link Entrar. Quem entrou: o botão Sair.
+// Recebe se a tela aberta é a de Entrar. Devolve o item.
+function ItemDaConta({ ligado }) {
+  const conta = useSessaoStore((estado) => estado.conta)
+  const { saindo, aoSair } = useSairDaConta()
+
+  if (conta) {
+    return (
+      <button className="nav-inferior__item nav-inferior__sair" type="button" onClick={aoSair} disabled={saindo}>
+        <IconeSair />
+        <span className="nav-inferior__nome">{saindo ? 'Saindo…' : 'Sair'}</span>
+      </button>
+    )
+  }
+
+  return (
+    <Link
+      className={ligado ? 'nav-inferior__item nav-inferior__item--ativo' : 'nav-inferior__item'}
+      href="/entrar"
+      aria-current={ligado ? 'page' : undefined}
+    >
+      <IconeConta />
+      <span className="nav-inferior__nome">Entrar</span>
+    </Link>
+  )
+}
 
 // Barra de baixo, só no celular (no computador os mesmos links ficam no cabeçalho).
 // Igual ao PI: 5 itens com ícone e nome, e o "+" terracota sempre no centro.
 // O item da tela aberta fica verde.
 // Recebe o caminho aberto (ou vazio enquanto ele não é conhecido). Devolve a barra.
+// Fica abaixo do ItemDaConta, que troca Entrar por Sair.
 function DesenhoDaBarra({ caminho = '' }) {
   const ativo = itemAtivoDaRota(caminho)
 
@@ -28,6 +60,11 @@ function DesenhoDaBarra({ caminho = '' }) {
               </span>
             </Link>
           )
+        }
+
+        // O último item é da conta: "Entrar" para o visitante, "Sair" para quem entrou.
+        if (item.id === 'entrar') {
+          return <ItemDaConta key={item.id} ligado={ativo === item.id} />
         }
 
         const ligado = ativo === item.id

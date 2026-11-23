@@ -3,8 +3,10 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { IconeEntrar, IconeMais } from './Icones.jsx'
+import { IconeEntrar, IconeMais, IconeSair } from './Icones.jsx'
 import { LINKS_DO_CABECALHO, itemAtivoDaRota } from './itensNavegacao.js'
+import useSairDaConta from '@/hooks/useSairDaConta'
+import { useSessaoStore } from '@/store/useSessaoStore'
 import './Cabecalho.css'
 import './CabecalhoNext.css'
 
@@ -28,10 +30,56 @@ function SeloPertoDeVoce() {
   )
 }
 
+// O canto da conta, no computador. Lê do Zustand quem está logado:
+//   • ainda conferindo (carregando): nada, para não piscar "Entrar" para quem já entrou;
+//   • visitante: o link Entrar;
+//   • quem entrou: "Olá, nome" e o botão Sair.
+// Recebe o caminho aberto (para marcar o Entrar quando a tela é /entrar). Devolve o trecho.
+function ContaNoCabecalho({ caminho }) {
+  const conta = useSessaoStore((estado) => estado.conta)
+  const carregando = useSessaoStore((estado) => estado.carregando)
+  const { saindo, aoSair, erro } = useSairDaConta()
+
+  if (carregando) {
+    return null
+  }
+
+  if (!conta) {
+    return (
+      <Link className="cabecalho__entrar" href="/entrar" aria-current={caminho === '/entrar' ? 'page' : undefined}>
+        <span className="cabecalho__entrar-icone" aria-hidden="true">
+          <IconeEntrar />
+        </span>
+        Entrar
+      </Link>
+    )
+  }
+
+  // Só o primeiro nome cabe no cabeçalho ("Maria Silva" → "Maria").
+  const primeiroNome = (conta.nome || '').trim().split(' ')[0]
+
+  return (
+    <div className="cabecalho__conta">
+      <span className="cabecalho__ola">{primeiroNome ? `Olá, ${primeiroNome}` : 'Olá!'}</span>
+      <button className="cabecalho__entrar cabecalho__sair" type="button" onClick={aoSair} disabled={saindo}>
+        <span className="cabecalho__entrar-icone" aria-hidden="true">
+          <IconeSair />
+        </span>
+        {saindo ? 'Saindo…' : 'Sair'}
+      </button>
+      {erro ? (
+        <p className="cabecalho__erro-sair" role="alert">
+          {erro}
+        </p>
+      ) : null}
+    </div>
+  )
+}
+
 // Faixa do topo, adaptada do Cabecalho.jsx do PI.
 // No celular: logo e selo "Perto de você" (os links ficam na barra de baixo).
 // No computador: uma pílula branca com logo, selo, links, Entrar e "+ Anunciar".
-// Ficaram para depois: a busca (Dia 4), o menu da conta e o "Sair" (Dia 3).
+// Fica para depois: a busca (Dia 4).
 // Recebe o caminho aberto (ou vazio enquanto ele não é conhecido). Devolve o cabeçalho.
 function DesenhoDoCabecalho({ caminho = '' }) {
   const ativo = itemAtivoDaRota(caminho)
@@ -61,12 +109,7 @@ function DesenhoDoCabecalho({ caminho = '' }) {
         })}
       </nav>
 
-      <Link className="cabecalho__entrar" href="/entrar" aria-current={caminho === '/entrar' ? 'page' : undefined}>
-        <span className="cabecalho__entrar-icone" aria-hidden="true">
-          <IconeEntrar />
-        </span>
-        Entrar
-      </Link>
+      <ContaNoCabecalho caminho={caminho} />
 
       {/* No PI era um <button> com navigate(); aqui é um link, que o Next já pré-carrega. */}
       <Link className="cabecalho__anunciar" href="/publicar">

@@ -1,0 +1,11 @@
+/* O "Sair" da barra é <button> (no PI todos os itens eram links): zera o visual de botão. */
+.nav-inferior__sair {
+  border: 0;
+  background: transparent;
+  font-family: var(--fonte-texto);
+  cursor: pointer;
+}
+
+.nav-inferior__sair:disabled {
+  opacity: 0.6;
+}

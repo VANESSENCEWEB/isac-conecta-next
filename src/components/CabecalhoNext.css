@@ -19,3 +19,50 @@
     flex: 1;
   }
 }
+
+/* --- Conta no cabeçalho (computador): "Olá, nome" + Sair -------------------- */
+.cabecalho__conta {
+  display: none;
+  position: relative;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (min-width: 900px) {
+  .cabecalho__conta {
+    display: flex;
+  }
+}
+
+.cabecalho__ola {
+  color: var(--cor-texto-principal);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* O Sair usa o mesmo contorno do Entrar; como é <button>, precisa zerar o fundo e a fonte. */
+.cabecalho__sair {
+  background: transparent;
+  font-family: var(--fonte-texto);
+  cursor: pointer;
+}
+
+.cabecalho__sair:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.cabecalho__erro-sair {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-status-recusado-texto);
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px -6px rgb(15 77 58 / 25%);
+}
