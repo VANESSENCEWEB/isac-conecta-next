@@ -1,0 +1,49 @@
+/* =============================================================================
+   CÍRCULO / QUADRO DA CATEGORIA (estilo novo, 04/nov)
+   O mesmo "vidro" claro da página inicial (CarrosselCategorias.css), agora em
+   todo lugar que mostra o ícone 3D da categoria:
+     • faixa de categorias da Vitrine (Categoria.jsx);
+     • anúncio sem foto: card da lista, Detalhe, Meus anúncios, convite e a
+       vitrine flutuante da página inicial.
+   Cada arquivo só diz a cor da categoria, na variável --cat
+   (ex.: .card-anuncio__foto--produtos { --cat: ... }). O desenho fica aqui, num lugar só.
+   O seletor [class*='--'] pega só o quadro de categoria (com a cor), e não a foto real.
+   ============================================================================= */
+
+.categoria__circulo,
+.card-anuncio__foto[class*='card-anuncio__foto--'],
+.detalhe__sem-foto,
+.convite-aberto__foto[class*='convite-aberto__foto--'],
+.flutuante__foto[class*='flutuante__foto--'],
+.meus__foto[class*='meus__foto--'] {
+  /* Cor padrão, caso alguma categoria nova ainda não tenha a sua. */
+  --cat: var(--cor-categoria-todos);
+  border: 1px solid color-mix(in oklch, var(--cat) 35%, white);
+  /* Fundo bem claro (o ícone aparece melhor); a cor fica na borda, no brilho e na sombra. */
+  background:
+    linear-gradient(160deg, rgb(255 255 255 / 95%) 0%, rgb(255 255 255 / 55%) 45%, transparent 70%),
+    color-mix(in oklch, var(--cat) 20%, white);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 90%),
+    inset 0 -6px 12px -6px color-mix(in oklch, var(--cat) 45%, transparent),
+    0 8px 16px -10px color-mix(in oklch, var(--cat) 70%, transparent);
+}
+
+/* O ícone 3D ganha uma sombrinha, como na página inicial. */
+.categoria__circulo img,
+.card-anuncio__foto[class*='card-anuncio__foto--'] img,
+.detalhe__sem-foto img,
+.convite-aberto__foto[class*='convite-aberto__foto--'] img,
+.flutuante__foto img.flutuante__icone,
+.meus__foto[class*='meus__foto--'] img {
+  filter: drop-shadow(0 3px 4px rgb(0 0 0 / 15%));
+}
+
+/* Na faixa da Vitrine, o tom fica um pouco mais forte ao passar o mouse (igual à página inicial). */
+@media (hover: hover) {
+  .categoria:hover .categoria__circulo {
+    background:
+      linear-gradient(160deg, rgb(255 255 255 / 90%) 0%, rgb(255 255 255 / 45%) 45%, transparent 70%),
+      color-mix(in oklch, var(--cat) 32%, white);
+  }
+}

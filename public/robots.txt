@@ -1,0 +1,10 @@
+# Robôs de busca: podem ler o site todo, menos as áreas logadas.
+User-agent: *
+Allow: /
+Disallow: /equipe/
+Disallow: /perfil
+Disallow: /meus-anuncios
+Disallow: /negocio
+Disallow: /publicar
+
+Sitemap: https://isac-conecta-pi.vercel.app/sitemap.xml

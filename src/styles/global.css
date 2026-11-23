@@ -1,0 +1,6 @@
+
+/* Foto de perfil (componente Avatar): preenche o círculo sem esticar. */
+.avatar-foto {
+  display: block;
+  object-fit: cover;
+}

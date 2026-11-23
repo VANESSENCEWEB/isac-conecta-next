@@ -1,0 +1,44 @@
+/* Coluna do celular até 767 px. --lado é o respiro interno das telas.
+   O espaço de baixo deixa a barra fixa sem cobrir o último card. */
+.tela {
+  --lado: var(--espaco-5);
+  width: min(100%, 430px);
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 120px;
+}
+
+/* O topo (logo, busca e menu) fica preso em cima em todas as telas e tamanhos:
+   rolando a página, ele continua visível. A sombrinha embaixo separa do conteúdo. */
+.topo-pagina {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: var(--cor-fundo-pagina);
+  box-shadow: 0 6px 12px -10px rgb(15 77 58 / 35%);
+}
+
+/* Tablet: a página cresce, mas a barra de baixo ainda fica presa. */
+@media (min-width: 768px) {
+  .tela {
+    --lado: 32px;
+    width: min(calc(100% - 48px), 1120px);
+  }
+}
+
+/* Desktop: a coluna cresce com a janela e deixa uma folga nas laterais.
+   Não encosta na borda e também não fica um bloco estreito no meio. */
+@media (min-width: 900px) {
+  .tela {
+    --lado: 32px;
+    width: min(calc(100% - 80px), 1440px);
+    padding-bottom: 40px;
+  }
+}
+
+/* Telas bem largas: sobe o teto e guarda um pouco mais de respiro. */
+@media (min-width: 1500px) {
+  .tela {
+    width: min(calc(100% - 120px), 1600px);
+  }
+}

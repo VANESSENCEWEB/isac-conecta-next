@@ -1,0 +1,63 @@
+/* =============================================================================
+   ACESSIBILIDADE (opções do menu lateral)
+   Cada opção é uma classe no <html>, colocada por src/utils/acessibilidade.js.
+   ============================================================================= */
+
+/* Texto maior: aumenta o site inteiro em 12,5% (letras, botões e espaços juntos,
+   para nada ficar apertado). "zoom" funciona em todos os navegadores atuais. */
+html.a11y-texto-maior body {
+  zoom: 1.125;
+}
+
+/* Alto contraste (reforçado em 04/nov): antes só escurecia um pouco o cinza,
+   e na prática a pessoa só via os sublinhados. Agora o site inteiro muda:
+   • fundo branco puro (sem o creme) e cartões brancos com borda escura;
+   • texto preto e texto secundário quase preto;
+   • verde, laranja e vermelho mais escuros (contraste acima de 7:1, nível AAA);
+   • bordas grossas nos cartões, campos e botões de contorno;
+   • links sublinhados (não depende só da cor). */
+html.a11y-alto-contraste {
+  --cor-fundo-pagina: #ffffff;
+  --cor-fundo-superficie: #ffffff;
+  --cor-texto-principal: #000000;
+  --cor-texto-secundario: #1f2a24;
+  --cor-texto-link: #8f1d0b;
+  --cor-borda-padrao: #2b3530;
+  --cor-borda-busca: #2b3530;
+  --cor-acao-principal: #08321f;
+  --cor-acao-principal-pressionado: #041c11;
+  --cor-acao-publicar: #8f2400;
+  --cor-acao-publicar-pressionado: #6b1a00;
+  --cor-botao-verde: #08321f;
+  --cor-botao-laranja: #8f2400;
+  --cor-botao-verde-hover: #041c11;
+  --cor-botao-verde-active: #041c11;
+  --cor-botao-laranja-hover: #6b1a00;
+  --cor-botao-laranja-active: #6b1a00;
+}
+
+/* Tudo que tem borda fina passa a ter borda de 2 px, e o foco do teclado fica bem grosso. */
+html.a11y-alto-contraste :is(input, textarea, select, .campo input, .campo textarea) {
+  border-width: 2px;
+  border-color: var(--cor-borda-padrao);
+}
+
+html.a11y-alto-contraste :is(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid #000000;
+  outline-offset: 3px;
+}
+
+html.a11y-alto-contraste a:not(.botao, .nav-inferior__item, .nav-inferior__publicar) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Menos animação: para tudo que se mexe sozinho (o mesmo que o "reduzir movimento" do aparelho). */
+html.a11y-menos-animacao *,
+html.a11y-menos-animacao *::before,
+html.a11y-menos-animacao *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

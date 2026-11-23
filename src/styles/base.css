@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--cor-fundo-pagina);
+  color: var(--cor-texto-principal);
+  font-family: var(--fonte-texto);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+button {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}

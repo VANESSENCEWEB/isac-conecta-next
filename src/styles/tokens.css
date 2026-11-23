@@ -1,0 +1,175 @@
+:root {
+  /* Fundo e superfície */
+  /* Fundo creme um pouco mais quente (04/nov, Figma da Vanessa): o logo não "salta" tanto. */
+  --cor-fundo-pagina: #f5efe4;
+  --cor-fundo-superficie: #ffffff;
+  --cor-borda-padrao: #ede5d8;
+  /* Borda dourada da busca da página inicial (no hover ela fica mais forte e ganha um brilho). */
+  --cor-borda-busca: #dfa547;
+
+  /* Ações */
+  --cor-acao-principal: #0f4d3a;
+  /* Brilho "tecnológico" da IA lendo a conversa (tela Processando) */
+  --cor-neon-azul: #38bdf8;
+  --cor-neon-verde: #34d399;
+  --cor-acao-principal-pressionado: #0a3528;
+  /* Balão de mensagem do WhatsApp (animação da tela Entrar) */
+  --cor-balao-whatsapp: #dcf8c6;
+  /* Verde do WhatsApp (10/nov): o claro só em detalhes decorativos (contraste baixo com branco);
+     o escuro nos botões com texto branco (4,9:1, passa no WCAG AA). */
+  --cor-whatsapp: #25d366;
+  --cor-whatsapp-escuro: #11823f;
+  /* Laranja do Figma (04/nov): o botão de publicar (Anunciar e o "+") e a ação principal das folhas.
+     Texto branco por cima: contraste 5,2:1 (AA). Antes era #b4532f. */
+  --cor-acao-publicar: #c83701;
+  --cor-acao-publicar-pressionado: #a32d00;
+  --cor-texto-sobre-publicar: #ffffff;
+  --cor-destaque-selo: #ffc845;
+
+  /* Texto */
+  --cor-texto-principal: #14231d;
+  --cor-texto-secundario: #5b6b63;
+  --cor-texto-inverso: #ffffff;
+  --cor-texto-link: #c93f27;
+
+  /* Status: fundo claro e texto escuro da mesma família */
+  --cor-status-pendente-fundo: #e6f0f7;
+  --cor-status-pendente-texto: #1d5b85;
+  --cor-status-ajuste-fundo: #fff3d6;
+  --cor-status-ajuste-texto: #7a5200;
+  --cor-status-ativo-fundo: #e3f2e8;
+  --cor-status-ativo-texto: #1f7a45;
+  --cor-status-recusado-fundo: #fbe6e1;
+  --cor-status-recusado-texto: #a3321e;
+  --cor-status-encerrado-fundo: #ecebe6;
+  --cor-status-encerrado-texto: #5b6b63;
+
+  /* Semáforo dos status do anúncio (D18), em cor forte para ler de longe:
+     🔵 azul = aprovado / no ar · 🟡 amarelo = aguardando análise ·
+     🔴 vermelho = ajuste pedido ou recusado · ⚪ cinza = encerrado.
+     "fundo" e "texto" são do selo; "faixa" é a cor das bordas e listras;
+     "claro" é o fundo de quadros grandes (folhas, recados). Contraste AA conferido. */
+  --cor-selo-ativo-fundo: #1e5fbf;
+  --cor-selo-ativo-texto: #ffffff;
+  --cor-selo-ativo-faixa: #1e5fbf;
+  --cor-selo-ativo-claro: #e6effb;
+  --cor-selo-pendente-fundo: #f5c518;
+  --cor-selo-pendente-texto: #2b2100;
+  --cor-selo-pendente-faixa: #d9a800;
+  --cor-selo-pendente-claro: #fff5cc;
+  --cor-selo-ajuste-fundo: #fde2dd;
+  --cor-selo-ajuste-texto: #9b2414;
+  --cor-selo-ajuste-faixa: #c0392b;
+  --cor-selo-ajuste-claro: #fdebe7;
+  --cor-selo-recusado-fundo: #b42318;
+  --cor-selo-recusado-texto: #ffffff;
+  --cor-selo-recusado-faixa: #b42318;
+  --cor-selo-recusado-claro: #fbe6e1;
+  --cor-selo-encerrado-fundo: #e4e4e0;
+  --cor-selo-encerrado-texto: #3f4441;
+  --cor-selo-encerrado-faixa: #8a918e;
+
+  /* Botão desabilitado */
+  --cor-desabilitado-fundo: #e5e5e0;
+  --cor-desabilitado-borda: #9ca3a0;
+  --cor-desabilitado-texto: #8a918e;
+
+  /* Botões primário, destaque e secundário */
+  --cor-botao-verde: #14532d;
+  --cor-botao-verde-hover: color-mix(in oklch, #14532d 88%, black);
+  --cor-botao-verde-active: color-mix(in oklch, #14532d 75%, black);
+  --cor-botao-laranja: #c83701; /* laranja do Figma, igual ao botão de publicar */
+  --cor-botao-laranja-hover: color-mix(in oklch, #c83701 90%, black);
+  --cor-botao-laranja-active: color-mix(in oklch, #c83701 78%, black);
+  --sombra-botao: 0 4px 12px oklch(0.2 0.02 150 / 0.12);
+  --sombra-botao-hover: 0 8px 20px oklch(0.2 0.02 150 / 0.18);
+  --transicao-botao: 160ms ease;
+
+  /* Fontes */
+  --fonte-titulo: "Bricolage Grotesque", sans-serif;
+  --fonte-texto: "DM Sans", sans-serif;
+
+  /* Espaços (base 4) e cantos */
+  --espaco-1: 4px;
+  --espaco-2: 8px;
+  --espaco-3: 12px;
+  --espaco-4: 16px;
+  --espaco-5: 20px;
+  --espaco-6: 24px;
+  --espaco-8: 32px;
+  --raio-pequeno: 12px;
+  --raio-medio: 18px;
+  --raio-card: 24px;
+  --raio-campo: var(--raio-medio);
+  --raio-pilula: 999px;
+
+  /* Categorias: a cor clara é o círculo do ícone; a cor cheia é o selo do card */
+  --cor-categoria-todos: #0f4d3a;
+  --cor-categoria-produtos: #c93f27;
+  --cor-categoria-produtos-clara: #f0643c;
+  --cor-categoria-servicos: #146b6b;
+  --cor-categoria-servicos-clara: #1e8c8c;
+  --cor-categoria-imoveis: #8a6200;
+  --cor-categoria-imoveis-clara: #ffc845;
+  --cor-categoria-vagas: #5a3fcc;
+  --cor-categoria-vagas-clara: #6c4fe0;
+  --cor-categoria-eventos: #b02a60;
+  --cor-categoria-eventos-clara: #d9407a;
+  --cor-categoria-comunitario: #1f7a45;
+  --cor-categoria-comunitario-clara: #2e9e5b;
+  --cor-verificado: #1f7a45;
+  /* Selo "Anunciante verificado" (10/nov): azul de "verified", claro e vivo,
+     com texto branco. #1570ef dá contraste 4,57:1 com o branco (passa no WCAG AA). */
+  --cor-verificado-azul: #1570ef;
+  --cor-agrupado-fundo: #e4f1f1;
+  --cor-agrupado-texto: #146b6b;
+  --cor-alerta-seguranca-fundo: #eaf4e4;
+  --cor-alerta-seguranca-borda: #cfe5c2;
+  --cor-alerta-seguranca-texto: #3e5248;
+  --cor-texto-sobre-foto: #f4efe6;
+  --cor-pino: #d23f2a;
+  --sombra-card: 0 4px 8px rgb(15 77 58 / 7%);
+  --sombra-card-hover: 0 14px 28px -8px rgb(15 77 58 / 18%);
+  --sombra-destaque: 0 12px 28px -8px rgb(15 77 58 / 18%);
+  --sombra-nav: 0 10px 15px rgb(15 77 58 / 14%);
+
+  /* Ilustração do motion "Confirmar o WhatsApp" (11/nov): cenário de bairro e praia, em tons pastel.
+     São só decoração (o desenho é aria-hidden); as cores de texto e de ação usam os tokens acima. */
+  --ilus-sol: #f6e0bd;
+  --ilus-nuvem: #fbf8f0;
+  --ilus-espuma: #fbf8f0;
+  --ilus-areia: #eadcbc;
+  --ilus-areia-escura: #cdbd98;
+  --ilus-mar-1: #d3e8e2;
+  --ilus-mar-2: #bfded8;
+  --ilus-mar-3: #a9d3cc;
+  --ilus-sombra: rgb(15 77 58 / 14%);
+  --ilus-chao-sombra: rgb(80 60 30 / 14%);
+  --ilus-casa-fundo-1: #efdcd2;
+  --ilus-casa-fundo-1-telhado: #e6c9bb;
+  --ilus-casa-fundo-2: #f1e7c4;
+  --ilus-casa-fundo-2-telhado: #e7d8a6;
+  --ilus-casa-fundo-3: #d8e5df;
+  --ilus-casa-fundo-3-telhado: #c5d8cf;
+  --ilus-casa-fundo-4: #dfe5ef;
+  --ilus-casa-fundo-4-telhado: #cbd5e5;
+  --ilus-casa-fundo-5: #e9dfec;
+  --ilus-casa-fundo-5-telhado: #dacde0;
+  --ilus-casa-frente-1: #f3c9b8;
+  --ilus-casa-frente-1-telhado: #e5ae98;
+  --ilus-casa-frente-2: #f1dc9c;
+  --ilus-casa-frente-2-telhado: #e3c872;
+  --ilus-casa-frente-3: #bfdccf;
+  --ilus-casa-frente-3-telhado: #a2c9b8;
+  --ilus-casa-frente-4: #c5d8ea;
+  --ilus-casa-frente-4-telhado: #a8c3dc;
+  --ilus-casa-frente-5: #dcc9e4;
+  --ilus-casa-frente-5-telhado: #c6aed2;
+
+  /* Texto/Botão e Rótulo/Selo, copiados do Figma */
+  --tamanho-botao: 16px;
+  --altura-linha-botao: 20px;
+  --tamanho-selo: 11px;
+  --altura-linha-selo: 14px;
+  --espaco-letras-selo: 0.66px;
+}
