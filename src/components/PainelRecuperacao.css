@@ -1,0 +1,219 @@
+/* =============================================================================
+   MOTION DO PAINEL "SUA CONTA DE VOLTA EM 3 PASSOS"
+   O painel em si (verde, círculos, lista) vem do Conta.css (.conta-painel).
+   Aqui fica só o mini formulário animado e o "aceso" de cada passo.
+   ============================================================================= */
+
+/* ---------- Mini formulário ---------- */
+.demo-recuperar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: var(--raio-medio);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-principal);
+  box-shadow: 0 18px 36px -18px rgb(0 0 0 / 45%);
+}
+
+.demo-recuperar__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--cor-borda-padrao);
+  border-radius: var(--raio-pequeno);
+  opacity: 0.5;
+  transition: border-color 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* O campo do passo atual: borda amarela, como um campo com foco. */
+.demo-recuperar__campo--ativo {
+  border-color: var(--cor-destaque-selo);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--cor-destaque-selo) 30%, transparent);
+  opacity: 1;
+}
+
+.demo-recuperar__campo--feito {
+  opacity: 1;
+}
+
+.demo-recuperar__rotulo {
+  color: var(--cor-texto-secundario);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+}
+
+.demo-recuperar__valor {
+  display: flex;
+  align-items: center;
+  min-height: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Cursor piscando no fim do texto que está sendo digitado. */
+.demo-recuperar__cursor {
+  width: 2px;
+  height: 16px;
+  margin-left: 2px;
+  background: var(--cor-acao-principal);
+  animation: demo-recuperar-pisca 0.9s steps(1) infinite;
+}
+
+.demo-recuperar__ok {
+  margin-left: auto;
+  color: var(--cor-acao-principal);
+  font-weight: 800;
+  animation: demo-recuperar-surge 0.3s ease both;
+}
+
+/* Botão: cinza enquanto falta preencher, verde quando a senha é trocada. */
+.demo-recuperar__botao {
+  margin-top: 4px;
+  padding: 9px 12px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-desabilitado-fundo);
+  color: var(--cor-desabilitado-texto);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.demo-recuperar__botao--ok {
+  background: var(--cor-acao-principal);
+  color: var(--cor-texto-inverso);
+}
+
+/* Selo do código novo, que "chega" no canto do mini formulário. */
+.demo-recuperar__codigo-novo {
+  position: absolute;
+  right: -10px;
+  bottom: -14px;
+  padding: 6px 12px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-destaque-selo);
+  color: var(--cor-texto-principal);
+  font-size: 12px;
+  box-shadow: 0 8px 18px -6px rgb(0 0 0 / 40%);
+  animation: demo-recuperar-chega 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* ---------- Passos da lista ---------- */
+/* Os passos ficam apagados; o que está acontecendo acende (mais forte e com o ícone amarelo).
+   "animation: none": a lista entra animada no Conta.css com opacity 0.92 no fim; aqui o "aceso" manda. */
+.painel-recuperar__passos li {
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+  animation: none;
+}
+
+.painel-recuperar__passos li.painel-recuperar__passo--aceso {
+  opacity: 1;
+}
+
+.painel-recuperar__passo--aceso .conta-painel__icone {
+  background: var(--cor-destaque-selo);
+  color: var(--cor-acao-principal);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@keyframes demo-recuperar-pisca {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes demo-recuperar-surge {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes demo-recuperar-chega {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.9);
+  }
+}
+
+/* Quem pediu menos movimento: sem cursor piscando e sem entradas animadas. */
+@media (prefers-reduced-motion: reduce) {
+  .demo-recuperar__cursor,
+  .demo-recuperar__ok,
+  .demo-recuperar__codigo-novo {
+    animation: none;
+  }
+}
+
+/* =============================================================================
+   ALINHAMENTO NO COMPUTADOR
+   O painel tem a mesma altura da coluna do formulário: começa na linha do
+   "RECUPERAR O ACESSO" e termina na linha do "Lembrou a senha? Entrar".
+   Dentro dele: título em cima, lista e rodapé embaixo, e o mini formulário
+   centralizado no espaço que sobra. Assim nada fica "solto" em nenhuma largura.
+   ============================================================================= */
+@media (min-width: 900px) {
+  /* A grade ocupa a mesma largura do cabeçalho: o formulário começa na borda
+     esquerda da pílula do topo e o painel termina na borda direita dela.
+     As duas colunas têm a mesma largura e esticam até a mais alta. */
+  .conta--recuperar-senha {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .conta--recuperar-senha .conta__coluna {
+    max-width: none;
+  }
+
+  /* No Conta.css o painel é "sticky" (gruda ao rolar); aqui ele acompanha a coluna. */
+  .painel-recuperar {
+    position: relative;
+    top: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .painel-recuperar .conta-painel__conteudo {
+    flex: 1;
+  }
+
+  /* Mini formulário no meio do espaço livre entre o título e a lista. */
+  .painel-recuperar .demo-recuperar {
+    margin-block: auto;
+  }
+
+  /* A lista e o rodapé descem até o fim do painel. */
+  .painel-recuperar__passos {
+    margin-top: 0;
+  }
+}
+
+/* Entre 900 e 1099 px a coluna do painel é estreita: textos e espaços um pouco menores. */
+@media (min-width: 900px) and (max-width: 1099px) {
+  .painel-recuperar {
+    padding: 32px 24px;
+  }
+
+  .painel-recuperar .conta-painel__titulo {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .painel-recuperar__passos {
+    gap: 14px;
+  }
+
+  .painel-recuperar__passos li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

@@ -7,8 +7,8 @@ import Alerta from '@/components/Alerta.jsx'
 import Botao from '@/components/Botao.jsx'
 import { Campo, CampoSenha } from '@/components/Campo.jsx'
 import CodigoDeRecuperacao from '@/components/CodigoDeRecuperacao.jsx'
-import { IconeCadeado, IconeEscudo, IconePessoa, IconeVerificado } from '@/components/Icones.jsx'
-import PainelConta from '@/components/PainelConta.jsx'
+import { IconeEscudo } from '@/components/Icones.jsx'
+import PainelRecuperacao from '@/components/PainelRecuperacao.jsx'
 import { recuperarSenha } from '@/services/auth'
 import { codigoCompleto, erroDoCodigo, mascararCodigo } from '@/utils/codigoRecuperacao'
 import { destinoSeguro, linkComVolta } from '@/utils/destinoSeguro'
@@ -35,21 +35,6 @@ const ITENS_SENHA = [
   { id: 'caracteres', texto: '8 caracteres' },
   { id: 'letra', texto: 'uma letra' },
   { id: 'numero', texto: 'um número' },
-]
-
-// Passos do painel verde da direita (só no computador), no mesmo formato do Cadastro do PI.
-const PASSOS_DA_RECUPERACAO = [
-  { Icone: IconePessoa, titulo: 'Seu telefone', texto: 'O mesmo que você usa para entrar, com DDD.' },
-  {
-    Icone: IconeCadeado,
-    titulo: 'O código que você anotou',
-    texto: 'São 12 letras e números, recebidos quando você criou a conta.',
-  },
-  {
-    Icone: IconeVerificado,
-    titulo: 'Uma senha nova',
-    texto: 'Depois de trocar, você recebe um código novo. O antigo deixa de valer.',
-  },
 ]
 
 // Lista ao vivo do que a senha nova já cumpre.
@@ -205,7 +190,7 @@ function TelaRecuperarSenha({ voltar }) {
   return (
     // "conta--duas-colunas": no computador, formulário à esquerda e painel verde à direita,
     // no mesmo formato do Entrar. No celular continua a faixa verde + formulário.
-    <main className="conta conta--duas-colunas">
+    <main className="conta conta--duas-colunas conta--recuperar-senha">
       <div className="conta__coluna">
         <header className="conta__faixa">
           <p className="conta__olho">RECUPERAR O ACESSO</p>
@@ -310,13 +295,8 @@ function TelaRecuperarSenha({ voltar }) {
         </form>
       </div>
 
-      <PainelConta
-        olho="Como funciona"
-        titulo="Sua conta de volta em 3 passos"
-        itens={PASSOS_DA_RECUPERACAO}
-        rodape="A equipe do ISAC nunca pede a sua senha."
-        IconeRodape={IconeEscudo}
-      />
+      {/* Painel verde com o motion dos 3 passos (só no computador). */}
+      <PainelRecuperacao />
     </main>
   )
 }
