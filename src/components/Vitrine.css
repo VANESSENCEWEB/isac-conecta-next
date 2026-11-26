@@ -1,0 +1,153 @@
+/* =============================================================================
+   VITRINE (página inicial)
+   Celular: uma coluna de cards. Tablet: duas. Computador: três.
+   O card em si vem do CardAnuncio.css; a faixa de categorias, do FaixaCategorias.css.
+   ============================================================================= */
+.vitrine {
+  padding: var(--espaco-5) var(--lado) var(--espaco-8);
+}
+
+/* ---------- Topo: título e busca ---------- */
+.vitrine__topo {
+  padding: var(--espaco-6) var(--espaco-5);
+  border-radius: 28px;
+  background: var(--cor-acao-principal);
+  color: var(--cor-texto-inverso);
+}
+
+.vitrine__olho {
+  margin: 0 0 var(--espaco-2);
+  color: var(--cor-destaque-selo);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.vitrine__titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 30px;
+  line-height: 34px;
+}
+
+.vitrine__texto {
+  margin: var(--espaco-2) 0 var(--espaco-5);
+  font-size: 15px;
+  line-height: 22px;
+  opacity: 0.9;
+}
+
+/* Campo de busca branco, com a lupa dentro e a borda amarela no foco. */
+.vitrine__busca {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 560px;
+}
+
+.vitrine__busca svg {
+  position: absolute;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  color: var(--cor-texto-secundario);
+  pointer-events: none;
+}
+
+.vitrine__busca input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 var(--espaco-4) 0 46px;
+  border: 2px solid transparent;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-principal);
+  font: inherit;
+  font-size: 16px;
+}
+
+.vitrine__busca input:focus-visible {
+  border-color: var(--cor-borda-busca);
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--cor-destaque-selo) 40%, transparent);
+}
+
+/* ---------- Lista ---------- */
+.vitrine__lista {
+  margin-top: var(--espaco-4);
+}
+
+.vitrine__subtitulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.vitrine__resumo,
+.vitrine__aviso {
+  margin: var(--espaco-1) 0 var(--espaco-4);
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+}
+
+/* Enquanto busca um filtro novo, a lista antiga fica meio apagada. */
+.vitrine__lista[aria-busy='true'] .vitrine__grade {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.vitrine__grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaco-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vitrine__vazio {
+  padding: var(--espaco-8) var(--espaco-5);
+  border: 1.5px dashed var(--cor-borda-padrao);
+  border-radius: var(--raio-medio);
+  background: var(--cor-fundo-superficie);
+  text-align: center;
+}
+
+.vitrine__vazio p {
+  margin: 0 0 var(--espaco-2);
+}
+
+.vitrine__botao-texto {
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 0;
+  background: none;
+  color: var(--cor-texto-link);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .vitrine__grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .vitrine__topo {
+    padding: var(--espaco-8) 40px;
+  }
+
+  .vitrine__titulo {
+    font-size: 40px;
+    line-height: 44px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .vitrine__grade {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,176 @@
+/* Card da vitrine. Veio do CardAnuncio.css do PI, sem o coração de salvar e sem o "agrupados". */
+.card-anuncio {
+  position: relative;
+  border: 1px solid var(--cor-borda-padrao);
+  border-radius: 24px;
+  background: var(--cor-fundo-superficie);
+  box-shadow: var(--sombra-card);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease;
+}
+
+@media (hover: hover) {
+  .card-anuncio:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-card-hover);
+  }
+}
+
+.card-anuncio__link {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px;
+  padding-right: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-anuncio__link:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 3px;
+  border-radius: 24px;
+}
+
+.card-anuncio__foto {
+  width: 104px;
+  height: 112px;
+  flex: 0 0 auto;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.card-anuncio__foto--produtos,
+.card-anuncio__foto--servicos,
+.card-anuncio__foto--imoveis,
+.card-anuncio__foto--vagas,
+.card-anuncio__foto--eventos,
+.card-anuncio__foto--comunitario,
+.card-anuncio__foto--todos {
+  display: grid;
+  place-items: center;
+}
+
+.card-anuncio__foto--produtos { --cat: var(--cor-categoria-produtos-clara); }
+.card-anuncio__foto--servicos { --cat: var(--cor-categoria-servicos-clara); }
+.card-anuncio__foto--imoveis { --cat: var(--cor-categoria-imoveis-clara); }
+.card-anuncio__foto--vagas { --cat: var(--cor-categoria-vagas-clara); }
+.card-anuncio__foto--eventos { --cat: var(--cor-categoria-eventos-clara); }
+.card-anuncio__foto--comunitario { --cat: var(--cor-categoria-comunitario-clara); }
+
+.card-anuncio__info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.card-anuncio__topo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding-right: 4px;
+}
+
+.card-anuncio__selo {
+  padding: 3px 8px;
+  border-radius: var(--raio-pilula);
+  color: var(--cor-texto-inverso);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.66px;
+}
+
+.card-anuncio__selo--produtos { background: var(--cor-categoria-produtos); }
+.card-anuncio__selo--servicos { background: var(--cor-categoria-servicos); }
+.card-anuncio__selo--imoveis {
+  background: var(--cor-categoria-imoveis-clara);
+  color: var(--cor-texto-principal);
+}
+.card-anuncio__selo--vagas { background: var(--cor-categoria-vagas); }
+.card-anuncio__selo--eventos { background: var(--cor-categoria-eventos); }
+.card-anuncio__selo--comunitario { background: var(--cor-categoria-comunitario); }
+
+/* Selo "Verificado" (04/nov): agora parece um selo de verdade.
+   Pílula verde cheia, texto branco e a roseta dourada com o ✓ verde. */
+.card-anuncio__verificado {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 4px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-verificado);
+  color: var(--cor-texto-inverso);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 18px;
+  box-shadow: 0 2px 6px -2px color-mix(in oklch, var(--cor-verificado) 60%, transparent);
+}
+
+.card-anuncio__verificado .icone-verificado {
+  color: var(--cor-destaque-selo);
+}
+
+.card-anuncio__verificado .icone-verificado__check {
+  stroke: var(--cor-verificado);
+}
+
+.card-anuncio__verificado svg,
+.card-anuncio__local svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.card-anuncio__titulo {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--cor-texto-principal);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.card-anuncio__preco {
+  color: var(--cor-acao-principal);
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.card-anuncio__sufixo {
+  color: var(--cor-texto-secundario);
+  font-family: var(--fonte-texto);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.card-anuncio__local {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  color: var(--cor-pino);
+}
+
+.card-anuncio__local span {
+  overflow: hidden;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-anuncio {
+    transition: none;
+  }
+}

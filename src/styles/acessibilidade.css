@@ -61,3 +61,14 @@ html.a11y-menos-animacao *::after {
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
 }
+
+/* Texto que só o leitor de tela lê (ex.: o rótulo do campo de busca da vitrine,
+   que na tela já é explicado pelo ícone de lupa e pelo exemplo dentro do campo). */
+.visualmente-escondido {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

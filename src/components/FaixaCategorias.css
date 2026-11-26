@@ -7,8 +7,7 @@
   scrollbar-width: none;
 }
 
-.faixa-categorias__aviso,
-.faixa-categorias__escolhida {
+.faixa-categorias__aviso {
   margin: var(--espaco-2) 0;
   color: var(--cor-texto-secundario);
 }

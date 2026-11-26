@@ -52,9 +52,6 @@ export default function FaixaCategorias() {
           )
         })}
       </div>
-      <p className="faixa-categorias__escolhida">
-        Filtro escolhido (guardado no Zustand): <strong>{escolhida}</strong>
-      </p>
     </section>
   )
 }
