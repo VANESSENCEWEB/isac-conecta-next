@@ -1,0 +1,143 @@
+/* =============================================================================
+   BUSCA ANIMADA (página inicial, celular)
+   Pílula branca com borda dourada. Hover e foco: borda mais grossa + brilho dourado.
+   ============================================================================= */
+
+.busca-animada {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 4px 0 14px;
+  border: 1px solid var(--cor-borda-busca);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  box-shadow: 0 4px 12px -6px rgb(15 77 58 / 14%);
+  transition: border-color var(--transicao-botao), box-shadow var(--transicao-botao);
+}
+
+/* Hover (mouse) e foco (teclado ou toque): o "tom do stroke" fica mais forte e brilha. */
+.busca-animada:hover,
+.busca-animada:focus-within {
+  border-color: var(--cor-borda-busca);
+  box-shadow:
+    0 0 0 3px color-mix(in oklch, var(--cor-borda-busca) 35%, transparent),
+    0 8px 18px -8px rgb(15 77 58 / 22%);
+}
+
+.busca-animada__campo {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  height: 100%;
+}
+
+.busca-animada__icone {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--cor-texto-secundario);
+}
+
+.busca-animada__icone svg,
+.busca-animada__filtros svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Nome do campo só para o leitor de tela. */
+.busca-animada__rotulo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.busca-animada__campo input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto-principal);
+  font: inherit;
+  font-size: 16px; /* 16 px: o iPhone não dá zoom ao tocar */
+}
+
+.busca-animada__campo input:focus {
+  outline: none;
+}
+
+/* A dica fica por cima do campo vazio, sem atrapalhar o toque (pointer-events: none). */
+.busca-animada__dica {
+  position: absolute;
+  left: 30px;
+  right: 0;
+  overflow: hidden;
+  color: var(--cor-texto-secundario);
+  font-size: 15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.busca-animada__dica strong {
+  color: var(--cor-texto-principal);
+  font-weight: 700;
+}
+
+/* O cursor piscando no fim da palavra. */
+.busca-animada__cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--cor-acao-publicar);
+  animation: busca-cursor 1s steps(1) infinite;
+}
+
+.busca-animada__filtros {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 11px;
+  border: 0;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-acao-principal);
+  color: var(--cor-texto-inverso);
+  cursor: pointer;
+  transition: background-color var(--transicao-botao);
+}
+
+.busca-animada__filtros:hover {
+  background: var(--cor-acao-principal-pressionado);
+}
+
+.busca-animada__filtros:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 2px;
+}
+
+@keyframes busca-cursor {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .busca-animada,
+  .busca-animada__filtros {
+    transition: none;
+  }
+
+  .busca-animada__cursor {
+    animation: none;
+  }
+}

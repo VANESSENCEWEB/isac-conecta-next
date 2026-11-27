@@ -1,11 +1,23 @@
 /* Ajustes do cabeçalho para o projeto Next.
-   O Cabecalho.css veio igual ao PI. Lá, no celular, a grade tinha a busca e o ☰,
-   que ainda não existem aqui. Esta regra deixa só logo e selo, lado a lado. */
+   O Cabecalho.css veio igual ao PI. Lá, no celular, a grade tinha o ☰,
+   que não existe aqui. Esta regra deixa logo e selo lado a lado e a busca embaixo. */
 @media (max-width: 899px) {
   .cabecalho {
     grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas: "logo perto";
+    grid-template-areas:
+      "logo perto"
+      "busca busca";
   }
+}
+
+/* No PI o botão verde de Filtros ficava na ponta direita das duas buscas.
+   Sem ele, a ponta direita ganha o mesmo respiro da esquerda. */
+.busca-cabecalho.busca-animada {
+  padding-right: 14px;
+}
+
+.busca-cabecalho.cabecalho__busca {
+  padding-right: 16px;
 }
 
 /* O "+ Anunciar" virou link (no PI era botão): tira o sublinhado. */
@@ -13,10 +25,13 @@
   text-decoration: none;
 }
 
-/* Computador: os links ficam no meio e empurram Entrar e Anunciar para a direita. */
+/* Computador: a busca ocupa o meio e empurra links, Entrar e Anunciar para a direita. */
 @media (min-width: 900px) {
-  .cabecalho__links {
-    flex: 1;
+  .cabecalho .busca-cabecalho.cabecalho__busca {
+    flex: 1 1 auto;
+    min-width: 180px;
+    background: var(--cor-fundo-pagina);
+    box-shadow: none;
   }
 }
 

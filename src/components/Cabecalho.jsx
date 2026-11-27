@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { IconeEntrar, IconeMais, IconeSair } from './Icones.jsx'
 import { LINKS_DO_CABECALHO, itemAtivoDaRota } from './itensNavegacao.js'
+import BuscaDoCabecalho from './BuscaDoCabecalho.jsx'
 import useSairDaConta from '@/hooks/useSairDaConta'
 import { useSessaoStore } from '@/store/useSessaoStore'
 import './Cabecalho.css'
@@ -77,9 +78,9 @@ function ContaNoCabecalho({ caminho }) {
 }
 
 // Faixa do topo, adaptada do Cabecalho.jsx do PI.
-// No celular: logo e selo "Perto de você" (os links ficam na barra de baixo).
-// No computador: uma pílula branca com logo, selo, links, Entrar e "+ Anunciar".
-// Fica para depois: a busca (Dia 4).
+// No celular: logo e selo "Perto de você"; embaixo, a busca animada (os links ficam na barra de baixo).
+// No computador: uma pílula branca com logo, selo, busca, links, Entrar e "+ Anunciar".
+// As duas buscas existem na página e o CSS mostra uma de cada vez, como no PI.
 // Recebe o caminho aberto (ou vazio enquanto ele não é conhecido). Devolve o cabeçalho.
 function DesenhoDoCabecalho({ caminho = '' }) {
   const ativo = itemAtivoDaRota(caminho)
@@ -91,6 +92,14 @@ function DesenhoDoCabecalho({ caminho = '' }) {
       </Link>
 
       <SeloPertoDeVoce />
+
+      {/* Celular: a busca animada na segunda linha. */}
+      <div className="cabecalho__busca-inicio">
+        <BuscaDoCabecalho variante="celular" caminho={caminho} />
+      </div>
+
+      {/* Computador: a busca em pílula dentro do cabeçalho. */}
+      <BuscaDoCabecalho variante="computador" caminho={caminho} />
 
       <nav className="cabecalho__links" aria-label="Navegação do site">
         {LINKS_DO_CABECALHO.map((item) => {

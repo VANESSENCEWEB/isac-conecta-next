@@ -7,7 +7,7 @@
   padding: var(--espaco-5) var(--lado) var(--espaco-8);
 }
 
-/* ---------- Topo: título e busca ---------- */
+/* ---------- Topo: título ---------- */
 .vitrine__topo {
   padding: var(--espaco-6) var(--espaco-5);
   border-radius: 28px;
@@ -35,41 +35,6 @@
   font-size: 15px;
   line-height: 22px;
   opacity: 0.9;
-}
-
-/* Campo de busca branco, com a lupa dentro e a borda amarela no foco. */
-.vitrine__busca {
-  position: relative;
-  display: flex;
-  align-items: center;
-  max-width: 560px;
-}
-
-.vitrine__busca svg {
-  position: absolute;
-  left: 16px;
-  width: 20px;
-  height: 20px;
-  color: var(--cor-texto-secundario);
-  pointer-events: none;
-}
-
-.vitrine__busca input {
-  width: 100%;
-  min-height: 52px;
-  padding: 0 var(--espaco-4) 0 46px;
-  border: 2px solid transparent;
-  border-radius: var(--raio-pilula);
-  background: var(--cor-fundo-superficie);
-  color: var(--cor-texto-principal);
-  font: inherit;
-  font-size: 16px;
-}
-
-.vitrine__busca input:focus-visible {
-  border-color: var(--cor-borda-busca);
-  outline: none;
-  box-shadow: 0 0 0 4px color-mix(in oklch, var(--cor-destaque-selo) 40%, transparent);
 }
 
 /* ---------- Lista ---------- */
