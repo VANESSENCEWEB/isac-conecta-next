@@ -1,0 +1,597 @@
+.detalhe__aviso {
+  padding: 0 var(--lado, var(--espaco-5)) var(--espaco-3);
+}
+
+/* Botão "Voltar" acima do anúncio: pílula branca com contorno, seta e texto.
+   Alvo de toque de 44 px. */
+.detalhe__topo-voltar {
+  padding: var(--espaco-3) var(--lado, var(--espaco-5));
+}
+
+.detalhe__voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px 0 12px;
+  border: 1px solid var(--cor-borda-padrao);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-acao-principal);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color var(--transicao-botao), background var(--transicao-botao);
+}
+
+.detalhe__voltar svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.detalhe__voltar:hover {
+  border-color: var(--cor-acao-principal);
+}
+
+.detalhe__voltar:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 2px;
+}
+
+.detalhe__galeria {
+  position: relative;
+  height: 240px; /* celular: foto menor para o título, o preço e o contato caberem na primeira tela */
+  background: var(--cor-borda-padrao);
+}
+
+.detalhe__galeria > img,
+.detalhe__sem-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detalhe__sem-foto {
+  display: grid;
+  place-items: center;
+}
+
+.detalhe__sem-foto--produtos { --cat: var(--cor-categoria-produtos-clara); }
+.detalhe__sem-foto--servicos { --cat: var(--cor-categoria-servicos-clara); }
+.detalhe__sem-foto--imoveis { --cat: var(--cor-categoria-imoveis-clara); }
+.detalhe__sem-foto--vagas { --cat: var(--cor-categoria-vagas-clara); }
+.detalhe__sem-foto--eventos { --cat: var(--cor-categoria-eventos-clara); }
+.detalhe__sem-foto--comunitario { --cat: var(--cor-categoria-comunitario-clara); }
+
+.detalhe__acao {
+  position: absolute;
+  top: 16px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-principal);
+  cursor: pointer;
+}
+
+.detalhe__acao svg {
+  width: 20px;
+  height: 20px;
+}
+
+.detalhe__acao--compartilhar { right: 68px; }
+.detalhe__acao--favorito {
+  right: 16px;
+  color: var(--cor-texto-link);
+}
+
+.detalhe__copia {
+  margin: 8px var(--lado, var(--espaco-5)) 0;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+}
+
+.detalhe__resumo,
+.detalhe__bloco {
+  padding: 20px var(--lado, var(--espaco-5)) 0;
+}
+
+.detalhe__linha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detalhe__selo {
+  padding: 3px 8px;
+  border-radius: var(--raio-pilula);
+  color: var(--cor-texto-inverso);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.66px;
+}
+
+.detalhe__selo--produtos { background: var(--cor-categoria-produtos); }
+.detalhe__selo--servicos { background: var(--cor-categoria-servicos); }
+.detalhe__selo--imoveis {
+  background: var(--cor-categoria-imoveis-clara);
+  color: var(--cor-texto-principal);
+}
+.detalhe__selo--vagas { background: var(--cor-categoria-vagas); }
+.detalhe__selo--eventos { background: var(--cor-categoria-eventos); }
+.detalhe__selo--comunitario { background: var(--cor-categoria-comunitario); }
+
+.detalhe__quando {
+  margin-left: auto;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.detalhe h1 {
+  margin: 8px 0 0;
+  font-family: var(--fonte-titulo);
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 29px;
+  letter-spacing: -0.8px;
+}
+
+.detalhe__preco {
+  margin: 8px 0 0;
+  color: var(--cor-acao-principal);
+  font-family: var(--fonte-titulo);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.detalhe__meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 8px 0 0;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.detalhe__selos-autor {
+  margin: 8px 0 0;
+}
+
+.detalhe__meta svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--cor-pino);
+}
+
+.detalhe h2 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.44px;
+}
+
+.detalhe__bloco > p,
+.detalhe__cartao p {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.detalhe__ficha {
+  margin: 12px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda-padrao);
+  border-radius: 20px;
+  background: var(--cor-fundo-superficie);
+}
+
+.detalhe__ficha div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 16px;
+}
+
+.detalhe__ficha div + div {
+  border-top: 1px solid var(--cor-borda-padrao);
+}
+
+.detalhe__ficha dt {
+  flex: 1;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.detalhe__ficha dd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: right;
+}
+
+.detalhe__cartao {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--cor-borda-padrao);
+  border-radius: 20px;
+  background: var(--cor-fundo-superficie);
+}
+
+.detalhe__cartao h2 {
+  font-family: var(--fonte-texto);
+  /* Nome do anunciante um pouco menor (10/nov), para ficar na proporção do selo. */
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.detalhe__cartao p {
+  margin-top: 4px;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.detalhe__cartao button {
+  margin-top: 4px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto-link);
+  font-family: var(--fonte-texto);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.detalhe__marca {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: var(--raio-pilula);
+  color: var(--cor-texto-inverso);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.detalhe__marca svg {
+  width: 22px;
+  height: 22px;
+}
+
+.detalhe__marca--grupo { background: var(--cor-acao-principal); }
+.detalhe__marca--verificado { background: var(--cor-categoria-servicos); }
+
+.detalhe__nome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.detalhe__selo-verificado {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px 2px 3px;
+  border-radius: var(--raio-pilula);
+  /* Selo "Anunciante verificado" (10/nov): pílula azul de "verified", texto branco
+     e roseta branca com ✓ azul. Texto em 11 px para ficar na proporção do nome. */
+  background: var(--cor-verificado-azul);
+  color: var(--cor-texto-inverso);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px -2px color-mix(in oklch, var(--cor-verificado-azul) 55%, transparent);
+}
+
+.detalhe__selo-verificado svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+  color: var(--cor-texto-inverso);
+}
+
+.detalhe__selo-verificado .icone-verificado__check {
+  stroke: var(--cor-verificado-azul);
+}
+
+.detalhe__seguranca {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 20px;
+}
+
+.detalhe__responsabilidade {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.detalhe__responsabilidade svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.detalhe__denunciar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto-secundario);
+  font-family: var(--fonte-texto);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.detalhe__denunciar svg {
+  width: 16px;
+  height: 16px;
+}
+
+.detalhe__contato {
+  position: sticky;
+  z-index: 4;
+  bottom: calc(88px + var(--espaco-2)); /* acima da barra de baixo do app (72px + folga) */
+  margin: var(--espaco-4) var(--espaco-3) 0;
+  border-radius: 24px;
+  box-shadow: var(--sombra-nav);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px var(--lado, var(--espaco-5));
+  border: 1px solid var(--cor-borda-padrao);
+  background: var(--cor-fundo-superficie);
+}
+
+.detalhe__contato p {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.detalhe__contato span {
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.detalhe__contato strong {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.detalhe__whatsapp {
+  width: auto;
+  max-width: none;
+  flex: 1;
+  text-decoration: none;
+}
+
+.detalhe__vazio {
+  padding: 32px var(--lado, var(--espaco-5));
+}
+
+.detalhe__vazio h1 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.detalhe__vazio p {
+  color: var(--cor-texto-secundario);
+}
+
+.detalhe__vazio a {
+  color: var(--cor-texto-link);
+  font-weight: 700;
+}
+
+.detalhe__acao:focus-visible,
+.detalhe__denunciar:focus-visible,
+.detalhe__cartao button:focus-visible,
+.detalhe__whatsapp:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 3px;
+}
+
+/* O botão de contato dentro do resumo só existe no computador */
+.detalhe__contato-topo {
+  display: none;
+}
+
+/* A tira de miniaturas só cabe no computador */
+.detalhe__galeria .galeria-fotos__tira {
+  display: none;
+}
+
+/* No desktop a foto fica ao lado do texto e acompanha a rolagem. */
+@media (min-width: 900px) {
+  .detalhe {
+    display: grid;
+    grid-template-columns: minmax(320px, 1.1fr) minmax(320px, 0.9fr);
+    column-gap: 40px;
+    align-items: start;
+    padding: 8px var(--lado, 32px) 32px;
+  }
+
+  /* O botão Voltar ocupa a linha inteira, acima da foto e do texto. */
+  .detalhe__topo-voltar {
+    grid-column: 1 / -1;
+    padding: 0 0 var(--espaco-3);
+  }
+
+  .detalhe__coluna-foto {
+    align-self: stretch;
+  }
+
+  /* A foto grande + as miniaturas cabem na altura da tela, sem rolar para ver o anúncio */
+  .detalhe__galeria {
+    position: sticky;
+    top: 96px;
+    height: min(560px, calc(100vh - 220px));
+    min-height: 380px;
+    border-radius: 26px;
+    background: none;
+  }
+
+  .detalhe__galeria .galeria-fotos__tira {
+    display: flex;
+  }
+
+  .detalhe__galeria .galeria-fotos__palco {
+    border-radius: 26px;
+  }
+
+  .detalhe__texto .detalhe__copia {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .detalhe__texto .detalhe__resumo,
+  .detalhe__texto .detalhe__bloco {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* O topo do texto (selo da categoria) começa na mesma linha do topo da foto.
+     Sem padding em cima, as duas colunas partem da mesma linha da grade. */
+  .detalhe__texto .detalhe__resumo {
+    padding-top: 0;
+  }
+
+  /* Blocos mais juntos: título, preço e contato na primeira tela */
+  .detalhe__texto .detalhe__bloco {
+    padding-top: var(--espaco-4);
+  }
+
+  .detalhe h1 {
+    font-size: 28px;
+    line-height: 31px;
+  }
+
+  .detalhe__preco {
+    margin-top: 6px;
+  }
+
+  .detalhe__contato-topo {
+    display: block;
+    margin-top: var(--espaco-4);
+  }
+
+  .detalhe__contato-topo .detalhe__whatsapp {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* No computador a barra de baixo some: o botão já está junto do preço */
+  .detalhe__contato {
+    display: none;
+  }
+}
+
+/* Selo "Destaque" (o mesmo amarelo do carrossel). */
+.detalhe__selo-destaque {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-destaque-selo);
+  color: var(--cor-texto-principal);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+}
+
+.detalhe__selo-destaque svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* "Você também pode gostar": ocupa a largura toda, abaixo da foto e do texto. */
+.detalhe__semelhantes {
+  grid-column: 1 / -1;
+  padding: var(--espaco-6) var(--lado, var(--espaco-5)) 0;
+}
+
+.detalhe__semelhantes-topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.detalhe__semelhantes-ver {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--cor-texto-link);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.detalhe__semelhantes-ver:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 2px;
+}
+
+.detalhe__semelhantes-lista {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-3);
+}
+
+@media (min-width: 768px) {
+  .detalhe__semelhantes-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--espaco-4);
+  }
+}
+
+@media (min-width: 900px) {
+  .detalhe__semelhantes {
+    padding: var(--espaco-8) 0 0;
+  }
+}

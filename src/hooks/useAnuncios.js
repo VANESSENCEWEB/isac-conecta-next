@@ -1,7 +1,7 @@
 'use client'
 
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
-import { buscarAnuncio, listarAnuncios } from '@/services/anuncios'
+import { buscarAnuncio, buscarWhatsappConfirmado, listarAnuncios, listarSemelhantes } from '@/services/anuncios'
 
 // Começo da chave dos anúncios no cache do TanStack Query.
 // No Dia 5, depois de criar, editar ou apagar um anúncio, o useMutation invalida
@@ -31,5 +31,26 @@ export function useAnuncio(id) {
     queryKey: [...CHAVE_ANUNCIOS, 'um', id],
     queryFn: () => buscarAnuncio(id),
     enabled: Boolean(id),
+  })
+}
+
+// Busca os "anúncios parecidos" do fim do detalhe.
+// Recebe o anúncio aberto (ou undefined enquanto ele carrega).
+// Devolve o resultado do useQuery. Só busca depois que o anúncio chegou.
+export function useSemelhantes(anuncio) {
+  return useQuery({
+    queryKey: [...CHAVE_ANUNCIOS, 'semelhantes', anuncio?.id],
+    queryFn: () => listarSemelhantes(anuncio),
+    enabled: Boolean(anuncio?.id),
+  })
+}
+
+// Busca o sim/não "WhatsApp confirmado" de quem anunciou.
+// Recebe o id de quem anunciou. Devolve o resultado do useQuery (data: true, false ou null).
+export function useWhatsappConfirmado(autorId) {
+  return useQuery({
+    queryKey: ['perfis', 'whatsapp-confirmado', autorId],
+    queryFn: () => buscarWhatsappConfirmado(autorId),
+    enabled: Boolean(autorId),
   })
 }

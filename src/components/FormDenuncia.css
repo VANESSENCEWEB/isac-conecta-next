@@ -1,0 +1,115 @@
+/* =============================================================================
+   FORMULÁRIO "DENUNCIAR ANÚNCIO" (dentro do Detalhe)
+   Só cores dos tokens. Faixa vermelha à esquerda: é um assunto de segurança.
+   ============================================================================= */
+
+.denuncia {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  border: 1.5px solid var(--cor-borda-padrao);
+  border-left: 5px solid var(--cor-selo-recusado-faixa);
+  border-radius: var(--raio-card);
+  background: var(--cor-fundo-superficie);
+}
+
+.denuncia--enviada {
+  border-left-color: var(--cor-selo-ativo-faixa);
+  align-items: flex-start;
+}
+
+.denuncia h2 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+}
+
+.denuncia h2:focus-visible,
+.denuncia__motivo input:focus-visible,
+.denuncia textarea:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 2px;
+}
+
+.denuncia p {
+  margin: 0;
+}
+
+.denuncia__ajuda,
+.denuncia__contador {
+  color: var(--cor-texto-secundario);
+  font-size: 0.8125rem;
+}
+
+.denuncia__motivos {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.denuncia__motivos legend {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.denuncia__motivo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--cor-borda-padrao);
+  border-radius: var(--raio-campo);
+  cursor: pointer;
+}
+
+.denuncia__motivo--marcado {
+  border-color: var(--cor-acao-principal);
+  font-weight: 600;
+}
+
+.denuncia__motivo input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--cor-acao-principal);
+}
+
+.denuncia__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.denuncia__campo label {
+  font-weight: 600;
+}
+
+.denuncia textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--cor-borda-padrao);
+  border-radius: var(--raio-campo);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-principal);
+  font: inherit;
+  resize: vertical;
+}
+
+.denuncia__erro {
+  color: var(--cor-status-recusado-texto);
+  font-weight: 600;
+}
+
+.denuncia__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.denuncia__acoes .botao {
+  flex: 1 1 140px;
+}

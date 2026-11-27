@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import TelaEmConstrucao from '@/components/TelaEmConstrucao'
+import DetalheAnuncio from '@/components/DetalheAnuncio'
 
 export const metadata = { title: 'Anúncio · ISAC Conecta' }
 
@@ -9,15 +9,16 @@ export const metadata = { title: 'Anúncio · ISAC Conecta' }
 // o Next monta o resto da página no build e mostra o fallback até o id chegar.
 export default function PaginaAnuncio({ params }) {
   return (
-    <Suspense fallback={<TelaEmConstrucao titulo="Anúncio" dia="Dia 4" />}>
+    <Suspense fallback={<p className="detalhe">Carregando o anúncio…</p>}>
       <ConteudoDoAnuncio params={params} />
     </Suspense>
   )
 }
 
-// Recebe o params (uma Promise) e devolve a tela com o número do anúncio.
+// Recebe o params (uma Promise), lê o id e entrega para a tela do detalhe,
+// que busca o anúncio no navegador com o TanStack Query.
 async function ConteudoDoAnuncio({ params }) {
   const { id } = await params
 
-  return <TelaEmConstrucao titulo={`Anúncio ${id}`} dia="Dia 4" />
+  return <DetalheAnuncio id={id} />
 }

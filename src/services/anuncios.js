@@ -1,5 +1,6 @@
 import { baseDasFotos, obterSupabase, supabaseEstaConfigurado } from '@/lib/supabase'
 import { converterAnuncio, limparTextoDaBusca, tirarAcentos } from '@/utils/converterAnuncio'
+import { ordenarSemelhantes } from '@/utils/semelhantes'
 
 // =============================================================================
 // SERVIÇO DOS ANÚNCIOS
@@ -100,4 +101,53 @@ export async function buscarAnuncio(id) {
   }
 
   return data ? converterAnuncio(data, new Date(), baseDasFotos()) : null
+}
+
+// "Você também pode gostar" no fim do detalhe: mesma categoria, mesmo bairro primeiro.
+// Recebe o anúncio aberto e quantos trazer (4).
+// Devolve a lista (pode ser vazia). Lança um Error se o banco não responder.
+export async function listarSemelhantes(anuncio, limite = 4) {
+  if (!anuncio || !pareceId(anuncio.id)) {
+    return []
+  }
+
+  exigirBanco()
+
+  // Pede mais que o limite para sobrar material depois de pôr o mesmo bairro na frente.
+  const { data, error } = await obterSupabase()
+    .from('anuncios')
+    .select(COLUNAS_DA_VITRINE)
+    .eq('status', 'ativo')
+    .eq('categorias.slug', anuncio.categoria)
+    .neq('id', anuncio.id)
+    .order('criado_em', { ascending: false })
+    .limit(limite * 4)
+
+  if (error) {
+    throw new Error('Não foi possível carregar anúncios parecidos.')
+  }
+
+  return ordenarSemelhantes(converterLista(data), anuncio.bairro).slice(0, limite)
+}
+
+// Pergunta se a equipe já confirmou o WhatsApp de quem anunciou (migration 021 do PI).
+// Recebe o id de quem anunciou.
+// Devolve true, false, ou null quando não dá para saber (aí o selo só não aparece).
+// Não lança erro: o selo é um extra, a página funciona sem ele.
+export async function buscarWhatsappConfirmado(autorId) {
+  if (!autorId || !supabaseEstaConfigurado()) {
+    return null
+  }
+
+  const { data, error } = await obterSupabase()
+    .from('perfis')
+    .select('whatsapp_confirmado')
+    .eq('id', autorId)
+    .maybeSingle()
+
+  if (error || !data) {
+    return null
+  }
+
+  return data.whatsapp_confirmado === true
 }

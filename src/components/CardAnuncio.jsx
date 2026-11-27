@@ -2,18 +2,19 @@ import Link from 'next/link'
 import { buscarCategoria } from '@/dados/categorias'
 import { formatarPreco } from '@/utils/formatarPreco'
 import { formatarQuando } from '@/utils/formatarQuando'
-import { IconePino, IconeVerificado } from './Icones.jsx'
+import { IconeCoracao, IconePino, IconeVerificado } from './Icones.jsx'
 import './CardAnuncio.css'
 
 // =============================================================================
 // CARD DE UM ANÚNCIO NA VITRINE
 // Veio do CardAnuncio.jsx do PI. Mudou: o <Link> agora é o do next/link (href no
-// lugar de to), e o coração de salvar ficou de fora (os "Salvos" não vieram do PI).
+// lugar de to). O coração só aparece quando quem usa o card passa onFavoritar.
 // =============================================================================
 
-// Recebe o anúncio (já no formato do converterAnuncio).
-// Devolve o card. O clique em qualquer parte abre o detalhe (/anuncio/<id>).
-export default function CardAnuncio({ anuncio }) {
+// Recebe o anúncio (já no formato do converterAnuncio), se o coração está marcado
+// e a função do coração (opcional).
+// Devolve o card. O clique no card abre o detalhe (/anuncio/<id>); o coração não abre.
+export default function CardAnuncio({ anuncio, favorito = false, onFavoritar }) {
   const categoria = buscarCategoria(anuncio.categoria)
   const preco = formatarPreco(anuncio)
   const foto = anuncio.fotos[0]
@@ -53,6 +54,17 @@ export default function CardAnuncio({ anuncio }) {
           </span>
         </span>
       </Link>
+      {onFavoritar ? (
+        <button
+          className={favorito ? 'card-anuncio__favorito card-anuncio__favorito--marcado' : 'card-anuncio__favorito'}
+          type="button"
+          aria-pressed={favorito}
+          aria-label={favorito ? 'Remover dos salvos' : 'Salvar anúncio'}
+          onClick={() => onFavoritar(anuncio.id)}
+        >
+          <IconeCoracao preenchido={favorito} />
+        </button>
+      ) : null}
     </article>
   )
 }

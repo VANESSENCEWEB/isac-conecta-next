@@ -1,0 +1,53 @@
+.alerta-seguranca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--cor-alerta-seguranca-borda);
+  border-radius: 20px;
+  background: var(--cor-alerta-seguranca-fundo);
+}
+
+.alerta-seguranca__icone {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  background: var(--cor-destaque-selo);
+  color: var(--cor-texto-principal);
+}
+
+.alerta-seguranca__icone svg,
+.alerta-seguranca__seta svg {
+  width: 21px;
+  height: 21px;
+}
+
+.alerta-seguranca__seta {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  color: var(--cor-acao-principal);
+}
+
+.alerta-seguranca__texto {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.alerta-seguranca__texto strong {
+  color: var(--cor-acao-principal);
+  font-size: 15px;
+  line-height: 21px;
+}
+
+.alerta-seguranca__texto span {
+  color: var(--cor-alerta-seguranca-texto);
+  font-size: 13px;
+  line-height: 18px;
+}

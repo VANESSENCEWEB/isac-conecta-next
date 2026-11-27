@@ -6,6 +6,7 @@ import FaixaCategorias from './FaixaCategorias.jsx'
 import { IconeBusca } from './Icones.jsx'
 import { buscarCategoria } from '@/dados/categorias'
 import { useAnuncios } from '@/hooks/useAnuncios'
+import { useFavoritos } from '@/hooks/useFavoritos'
 import { useFiltrosStore } from '@/store/useFiltrosStore'
 import './Vitrine.css'
 
@@ -79,6 +80,7 @@ export default function Vitrine() {
   const categoria = useFiltrosStore((estado) => estado.categoria)
   const limparFiltros = useFiltrosStore((estado) => estado.limparFiltros)
   const { data: anuncios, isPending, isError, error, refetch, isFetching } = useAnuncios({ busca, categoria })
+  const { estaFavorito, alternarFavorito } = useFavoritos()
   const temFiltro = busca !== '' || categoria !== 'todos'
 
   return (
@@ -127,7 +129,7 @@ export default function Vitrine() {
               <ul className="vitrine__grade">
                 {anuncios.map((anuncio) => (
                   <li key={anuncio.id}>
-                    <CardAnuncio anuncio={anuncio} />
+                    <CardAnuncio anuncio={anuncio} favorito={estaFavorito(anuncio.id)} onFavoritar={alternarFavorito} />
                   </li>
                 ))}
               </ul>

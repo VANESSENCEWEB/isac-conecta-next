@@ -1,0 +1,114 @@
+/* Galeria de fotos do anúncio: foto grande, setas de 44px, contador e miniaturas. Só cores dos tokens. */
+.galeria-fotos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.galeria-fotos__palco {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--cor-borda-padrao);
+  touch-action: pan-y; /* a página ainda rola para cima e para baixo ao arrastar a foto */
+}
+
+.galeria-fotos__foto {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galeria-fotos__foto--abre {
+  cursor: zoom-in;
+}
+
+.galeria-fotos__seta {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 92%);
+  color: var(--cor-texto-principal);
+  box-shadow: var(--sombra-card);
+  cursor: pointer;
+}
+
+.galeria-fotos__seta svg {
+  width: 20px;
+  height: 20px;
+}
+
+.galeria-fotos__seta--esquerda { left: 10px; }
+.galeria-fotos__seta--direita { right: 10px; }
+
+.galeria-fotos__seta:hover {
+  background: var(--cor-fundo-superficie);
+}
+
+.galeria-fotos__seta:focus-visible,
+.galeria-fotos__miniatura:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 2px;
+}
+
+.galeria-fotos__contador {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: var(--raio-pilula);
+  background: rgb(20 36 28 / 75%);
+  color: var(--cor-texto-inverso);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+/* Miniaturas: clicar escolhe a foto grande */
+/* Miniaturas QUADRADAS (72 x 72), alinhadas à esquerda, em vez de esticadas na largura toda. */
+.galeria-fotos__tira {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.galeria-fotos__miniatura {
+  display: block;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: var(--raio-pequeno);
+  background: none;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.galeria-fotos__miniatura--atual {
+  border-color: var(--cor-acao-principal);
+  opacity: 1;
+}
+
+.galeria-fotos__miniatura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,4 +1,4 @@
-/* Card da vitrine. Veio do CardAnuncio.css do PI, sem o coração de salvar e sem o "agrupados". */
+/* Card da vitrine. Veio do CardAnuncio.css do PI, sem o "agrupados". */
 .card-anuncio {
   position: relative;
   border: 1px solid var(--cor-borda-padrao);
@@ -63,6 +63,7 @@
   flex-direction: column;
   gap: 5px;
   min-width: 0;
+  padding-right: 36px;
 }
 
 .card-anuncio__topo {
@@ -119,7 +120,8 @@
 }
 
 .card-anuncio__verificado svg,
-.card-anuncio__local svg {
+.card-anuncio__local svg,
+.card-anuncio__favorito svg {
   width: 15px;
   height: 15px;
   flex: 0 0 auto;
@@ -167,6 +169,31 @@
   line-height: 18px;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.card-anuncio__favorito {
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo-superficie);
+  color: var(--cor-texto-link);
+  cursor: pointer;
+}
+
+.card-anuncio__favorito--marcado {
+  background: color-mix(in srgb, var(--cor-texto-link) 12%, white);
+}
+
+.card-anuncio__favorito:focus-visible {
+  outline: 3px solid var(--cor-acao-principal);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
