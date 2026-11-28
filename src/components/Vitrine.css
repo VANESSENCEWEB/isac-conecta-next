@@ -62,9 +62,11 @@
   transition: opacity 0.2s ease;
 }
 
+/* minmax(0, 1fr), e não só 1fr: com 1fr a coluna nunca fica menor que o conteúdo do card,
+   e no celular o card passava da borda da tela (a página rolava para o lado). */
 .vitrine__grade {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--espaco-3);
   margin: 0;
   padding: 0;
